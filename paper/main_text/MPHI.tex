@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{comment}
 \usepackage{bbm}
 \usepackage{hyperref}
 \usepackage{apacite}
@@ -17,6 +18,8 @@
 \usepackage{multirow}
 \usepackage{longtable}
 \usepackage{rotating, tabularx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage[dvips]{xcolor}
 \usepackage{pdflscape, lipsum}
@@ -77,7 +80,6 @@ In common theoretical economy has showed that the monetary policy is the process
  
 The Solow model is therefore assuming that the economy as a whole in particular households and firms consumes a constant friction of its output each period. Even so, the assumption of a constant saving rate is generally not, because it is going to be optimal from a microeconomic perspective in the short run.  
 
-	\citet{Albanesi2001} \cite{Wahid2019}
 %-----------------------------------------------------------------------------------
 
 \textbf{Related Literature.} Our work contributes to a growing literature studying the distributional effects on monetary policy transmission on inequality. \citep{Coibion2017} used micro-level data from the Consumption Expenditures Survey to study the effects of monetary policy shocks to consumption and income inequality in the United States in the period of 1980.  
@@ -99,12 +101,6 @@ For more than two decades, the exchange rate stability and low inflation rate ar
 
 
 Local currency is estimated as just 10 percent of the total board money. In \citet{Khou2013} showed that circulation of the riel has grown since the early 2000s, in particular, in the second half. Between 1989 and 2000, the amount of riels in circulation varied slightly and was around 100 million dollars, while the economic growth rate exceeded 5 percent on average. In contrast, it increased by about 20 percent between 2001 and 2010. This allowed the volume of the banknotes in circulation to pass from about 100 million dollars in the period of 1989-2000 to nearly 800 million dollars in 2010. Yet bank deposits in riel remain very low; they represent less than 5 percent of the total deposits. 
-
-\\
-
-
-
-
 
 
 \\
@@ -133,39 +129,287 @@ The central bank was first introduced an 18 percent cap on annual interest rate 
 Since the end of the financial crisis in 2009, currently the community transmission of COVID-19 has been a major challenge for Cambodia's healthcare system and household incomes. According to the \cite{Karamba2021}, a fifth-round result of the World Bank's High-Frequency Phone Survey of Households in Cambodia found that 45 percent of households experienced declines in income in December 2020 and March 2021. This compares to 48 percent in Round 4 that experienced declines between October and December, 51 percent in Round 3 that experienced declines between August and October. Where in Round 2, households income report declines 63 percent between May and August 2020 and 83 percent in Round 1 that experienced declines between the first COVID-19 outbreak and May 2020. Despite the fact that Phnom Penh and its nearby town were put in lockdown, but we does not yet any report to show about household income lost during the period of lockdown and travail restrictions.  
 %-----------------------------------------------------------------------------------
 Many decades after the fall of the Khmer Rouge, now Cambodia has moved to new transposition with a lower middle-income status since 2015. 
+\clearpage
+%-----------------------------------------------------------------------------------
 \section{A Model of Monetary Policy Transmission Channel}\label{sec:model}
-
 %-----------------------------------------------------------------------------------
-\subsection{Aggregate Income Channel}
 %-----------------------------------------------------------------------------------
 
-\subsection{Household}
+\subsection{Monetary Policy Transmission}
 %-----------------------------------------------------------------------------------
+\subsubsection{Traditional Monetary Policy}
+Theoretically, the central bank controls the nominal interest rate it on nominal bonds. Perfect foresight implies that the real interest rate is:
 
-\subsection{Interest Rate Exposure Channel}
-To analysis the influence  of monetary policy (MP) in Cambodia, we follow Romer and Romer (2004) to identify innovations to monetary policy purged of anticipatory effects associated with economic conditions. 
-\begin{equation}\begin{split}
-\Delta rrr_{m} = \alpha + \beta rrrb_{m} + \sum_{i = -1}^{2}{\gamma_{i} \widetilde{\Delta y}_{mi}} + \sum_{i = -1}^{2} \lambda_{i} (\widetilde{\Delta y}_{mi} - \widetilde{\Delta y}_{m-1, i}) + \sum_{i = -1}^{2} \varphi_{i}\widetilde{\pi}_{mi} \\
-+ \sum_{i = -1}^{2}\theta_{i}(\widetilde\pi_{mi} - \widetilde\pi_{m-1, i}) + \rho \widetilde{u}_{m0} + \varepsilon_{m}
-\end{split}\end{equation}
-
-\noindent where $m$ dotes the MP Committee meeting, $\Delta rrr_{m}$ is the change in the intended reserve requirement rate of the central bank around the innovation policy with the new implementation $m$. $nbcrb_{m}$ is the level of the intended interest rate before any changes associated with any new regulations $m$. $\widetilde{\pi}$, $\widetilde{\Delta y}$, and $\widetilde{u}$ refer to the forecasts of inflation, real out growth, and the unemployment rate. The $i$ subscripts refer to the horizon of the forecast: $-1$ is the previous quarter, $0$ is the current quarter, while $1$ and $2$ are one and two quarters ahead, respectively. The forecast for the previous quarter is often actual data rather than a forecast.  
-
-%------------------------------------------------------------------
-\subsection{Inflation Tax}
-%------------------------------------------------------------------
-\subsection{Income Composition}
-%------------------------------------------------------------------
-sß\begin{equation}}
-	\frac{Y_{j;t-n}-\overline{Y}_{j;<t}}{\overline{D}_{j;<t}} = \sum_{k=1}^{K} \mathbbm{1}[j\in k]\begin{bmatrix}\alpha^{k} +\beta^{k}(-\Delta i_{t}) + \delta^{k} Z_{t}\end{bmatrix} + \varepsilon_{j; t}
+%-----------------------------------------------------------------------------------
+\begin{equation}
+	1 + r_{t} = \frac{1 - i_{t}}{1+ \pi_{t+1}}
 \end{equation}
+%-----------------------------------------------------------------------------------
+where $\pi_{t+1}$ is the rate of price inflation, $1 + \pi_{t+1} \equiv P_{t +1}$ . We consider three specifications of $P_{t}$ monetary policy. Under neoclassical policy, the central bank sets a path for it that is consistent with $L_{t} = 1$ for all $t$. In doing so, it achieves a path $r_{t}^{\ast}$ for the real interest rate, and the economy behaves as if the wage rigidity constraint (8) was absent. We follow the literature and call $r_{r}^{\ast}$ the ‘natural interest rate’ path. Under constant-r policy, the central bank targets a real rate that is constant at the economy’s steady-state natural rate, $r_{t} = r^{\ast}$, and does not change this target in response to any of our experiments. This policy shuts off all equilibriating real interest rate movements, including those driven by changes in expected inflation. Finally, our benchmark monetary policy is one in which the monetary authority sets the nominal interest rate according to a Taylor rule subject to the zero lower bound:
+%-----------------------------------------------------------------------------------
+\begin{equation}\label{q2}
+	i_{t} = \max \quad \left(0, (1 + r^{\ast})(1 + \pi^{\ast}) \left( \frac{\frac{P_{t}}{P_{t -1}}}{1 + \pi^{\ast}}\right)^{\phi} -1 \right)
+\end{equation}
+%-----------------------------------------------------------------------------------
+where $r^{\ast}$ is the steady state natural rate, π∗ is the inflation target, and $\phi > 1$. In our calibrated exercises, the zero lower bound in (\ref{q2}) will always be binding.
+%-----------------------------------------------------------------------------------
 
-In the economy, households' choices about to save and borrow in financial markets are crucial to their consumption decisions. 
-%------------------------------------------------------------------
+\subsubsection{The Identification of Romer and Romer on Monetary Policy Shocks}
+To analysis the influence  of MP on inequality in Cambodia, we follow \citet{Romer2004} to identify innovations to monetary policy purged of anticipatory effects associated with economic conditions. They construct a historical measure of changes in the target the US's Federal Fund rate at each FOMC meeting from the period of 1969 to 1996 by using the real-time forecasts of the Fed staff presented in the Greenbook prior to each FOMC meeting. Conversely, the context of MP in Cambodia, it has their own unique with much as much different from MP in the US. Cambodia used multiples foreign currencies and the US dollar is the main foreign currency in terms of the mean payment, a unit of account and a store of value. Interestingly, the US dollar has a huge share in the market concentration with about 90 percent. The Cambodian MP probably depend on the Fed.
 
-\subsection{Savings Redistribution}
+To the best of our knowledge, we develop a new monetary policy shocks for applied in the context of Cambodia based on \citet{Romer2004}. We assume MP in the Kingdom has two main component: to control monetary supply in the Cambodian riel and the US dollar. The model has the nurture below: 
+%-----------------------------------------------------------------------------------
+\begin{equation}\begin{split}\label{q3}
+		\Delta rrr_{m} = \alpha + \beta rrrb_{m} + \sum_{i = -1}^{2}{\gamma_{i} \widetilde{\Delta y}_{m,i}} + \sum_{i = -1}^{2} \lambda_{i} (\widetilde{\Delta y}_{m,i} - \widetilde{\Delta y}_{m-1, i}) + \sum_{i = -1}^{2} \varphi_{i}\widetilde{\pi}_{m,i} \\
+		+ \sum_{i = -1}^{2}\theta_{i}(\widetilde\pi_{m,i} - \widetilde\pi_{m-1, i}) + \rho \widetilde{u}_{m,0} + \varepsilon_{m}
+\end{split}\end{equation}
+%-----------------------------------------------------------------------------------
+ where $m$ dotes the MP Committee meeting, $\Delta rrr_{m}$ is the change in the intended reserve requirement rate of the central bank around the innovation policy with the new implementation $m$ for the Cambodian riel currency. $rrrb_{m}$ is the level of the intended interest rate before any changes associated with any new regulations $m$ for the Cambodian riel. $\widetilde{\pi}$, $\widetilde{\Delta y}$, and $\widetilde{u}$ refer to the forecasts of inflation, real out growth, and the unemployment rate. The $i$ subscripts refer to the horizon of the forecast: $-1$ is the previous quarter, $0$ is the current quarter, while $1$ and $2$ are one and two quarters ahead, respectively. The forecast for the previous quarter is often actual data rather than a forecast.  
+ 
+ Similarly, as equation (\ref{q3}), MP shocks for the US dollar supply in Cambodia's market has a structure as follow: 
+%-----------------------------------------------------------------------------------
+\begin{equation}\begin{split}\label{q4}
+		\Delta rrd_{m} = \alpha + \beta rrdb_{m} + \sum_{i = -1}^{2}{\gamma_{i} \widetilde{\Delta y}_{m,i}} + \sum_{i = -1}^{2} \lambda_{i} (\widetilde{\Delta y}_{m,i} - \widetilde{\Delta y}_{m-1, i}) + \sum_{i = -1}^{2} \varphi_{i}\widetilde{\pi}_{m,i} \\
+		+ \sum_{i = -1}^{2}\theta_{i}(\widetilde\pi_{m,i} - \widetilde\pi_{m-1, i}) + \rho \widetilde{u}_{m,0} + \varepsilon_{m}
+\end{split}\end{equation}
+%-----------------------------------------------------------------------------------
+Everything are the same, but the change is the intended reserve requirement rate of the central bank around MP Committee $m$ for the US dollar denote $\Delta rrd_{m}$, and the level of the intented interest rate before any change associated with meeting $m$ has a notation $rrdb_{m}$.  
+
+
 %------------------------------------------------------------------
-\subsection{Earning Heterogeneity}
+\subsection{Monetary}
+\subsubsection{Household Heterogeneity and Aggregate Consumption}
+
+We consider a household with separable preference over nondurable consumption $c_{t}$ and hour of work $n_{t}$. We assume no aggregate uncertainty for simplicity: the same insights obtain when markets are compete, except with respect to idiosyncratic shock to their income and spending needs. The household is endowned with a stream of real unearned income $y_{t}$. He has perfect foresight over the general level of price $P_{t}$ and the path of the nominal wages $W_{t}$, and holds long-term nominal and real contracts. The time horizon finite or infinite with discrete period $t= 0, 1, 2, \ldots$ and the agent solves the following utility maximization function:  
+
+%-----------------------------------------------------------------------------------
+\begin{equation*}
+	\max \quad \mathbb{E} \left[\sum_{t=0}^{\infty}\beta^{t}\begin{Bmatrix}u (c_{t}) - v(n_{t})\end{Bmatrix}\right]
+\end{equation*}
+%-----------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------
+\begin{equation}\begin{split}\label{e1}
+	\text{s.t.} \quad \quad P_{t}c_{t} = P_{t}y_{t} + W_{t}n_{t} + (_{t-1}B_{t}) + \sum_{s \geqslant 1}(_{t}Q_{t+s})(_{t-1}B_{t+s} - _{t}B_{t+s}) + P_{t}(_{t-1}b_{t}) \\
+	+ \sum_{s \geqslant 1}(_{t}q_{t+s}) P_{t+s} (_{t-1}b_{t+s} - _{t}b_{t+s})
+\end{split}\end{equation}
+%-----------------------------------------------------------------------------------
+
+The follow budget constraint in equation (\ref{e1}) view the consumer in every period $t$, as having a portfolio of zero coupon bonds inherited from period $t-1$ and a portfolio of bonds to carry into the next period.\footnote{Of course, just decide to roll over household position from the previous period. This corresponds to the costles trade that sets $_{t-1}b_{t+s} = _{t}b_{t+s}$ and $_{t}B_{t+s} = _{t-1}B_{t+s}$ for all $s$} $_tQ_{t+s}$ denote the time $t$ price of a nominal zero coupon bond paying at time $t+s$, $_{t}q_{t+s}$ is the price of a real zero coupon bond, and $_{t}B_{t+s}$ denote the nominal quantities purchased and $_{t}b_{t+s}$ is the real quantities purchased by households in each period, respectively. To keep the problem well-defined, we assume that the prices of nominal and real bonds prevent arbitrage profits. This implied a Fischer equation for the nominal term structure: 
+%-----------------------------------------------------------------------------------
+\begin{equation*}
+	_{t}Q_{t+s} = (_{t}q_{t+s}) \frac{P_{t}}{P_{t+s}} \quad \quad \quad \forall t,s
+\end{equation*}
+%-----------------------------------------------------------------------------------
+As we focus on the period $t=0$. Now we represent stocks which pay a riskless real dividend stream and therefore are priced associated with the risk-free discounted value of this stream, inflation-indexed government bonds, and price-level adjusted mortgages. We write the real wage at $t$ as $w_{t} \equiv \frac{W_{t}}{P_{t}}$, the initial real term structure as $q_{t} \equiv {_{0}q_{t}}$, the initial nominal term structure as $Q_{t} \equiv {_{0}Q_{t}}$, and impose the present-value normalization $q_{0} = Q_{0} =1$.
+
+Using either a terminal condition, the flow budget constraints consolidate into an intertemporal budget constraint: 
+%-----------------------------------------------------------------------------------
+\begin{equation}\label{e2}
+	\sum_{s \geqslant 0}q_{t}c_{t} = \underbrace{\sum_{s \geqslant 0}q_{t}(y_{t} + w_{t}n_{t})}_{\omega^H} + \underbrace{\sum_{s \geqslant 0}q_{t}\left ( (_{1}b_{t}) + \left(\frac{_{1}B_{t}}{P_{t}}\right)\right )}_{\omega^F} \equiv \omega 
+\end{equation}
+%-----------------------------------------------------------------------------------
+The present value of consumption must be equal to wealth $\omega$: the sum of human wealth $\omega^{H}$ equal to the present value of all future income, and financial wealth $\omega^{F}$. Since $_{-1}B_{t}$ and $_{-1}b_{t}$ only enter to equation (\ref{e2}) through $\omega_{F}$, it follows that financial assets with the same initial present value deliver the same solution to the consumer problem. For instance, this framework predicts that a household with an adjustable-rate mortgage (ARM), with $_{-1}B_{0} = -L$, chooses the same plan for consumption and labour supply as an otherwise identical household with a fixed-rage mortgage (FRM), $_{-1}B_{t} = -M$ for $t = 0, 1, 2, \ldots, T$, provided the two mortgages have the same outstanding principal, $L = \sum_{t=0}^{T}Q_{t}M$. In this sense, the composition of balance sheets is irrelevant. 
+%-----------------------------------------------------------------------------------
+
+\subsubsection{Adjustment After a Transitory Shock}
+The first-order change in initial consumption $dc \equiv dc_{0}$, labor supply $dn \equiv dn_{0}$, and welfare $dU$ that results from this change in the environment. 
+%-----------------------------------------------------------------------------------
+\begin{align}
+	\label{e3} dc &= MPC(d\Omega + \psi ndw) - \sigma c MPS \frac{dR}{R} \\ 
+	\label{e4} dn &= MPN(d\Omega + \psi ndw) + \psi n MPS \frac{dR}{R} + \psi n \frac{dw}{w} \\ 
+    \label{e5} dU &= u' (c) d \Omega 
+\end{align}
+%-----------------------------------------------------------------------------------
+Let $\sigma$ and $\psi$ be the local Frisch elasticities of substitution in consumption and hours. The traditional theory denie the marginal propensity to consume as $MPC =\frac{\partial c_{0}}{\partial y_{0}}$ along the initial path. When a consumer exogenously receives an extra dollar of income, he probaly increase consumption by $MPC$ dollars, but to the extent that labor supply is elastic $\psi <0$, he also reduces hours by marginal propensity to nominal $MPN = \frac{\partial n_{0}}{\partial y_{0}} <0$, leaving only marginal propensity to saving $MPS = 1 - MPC + w_{0}MPN$ dollars for saving. Indeed, the behavioral response to income changes turn out to also matter for the response to the real interest rate, wage, and price level changes. At the same time, the net of consumption wealth change $d\Omega$ has the structure below: 
+%-----------------------------------------------------------------------------------
+\begin{equation}\label{e6}
+	d\Omega = dy +ndw - \sum_{s \geqslant 0}Q_{t}\left(\frac{_{-1}B_{t}}{P_{0}}\right) \frac{dP}{P} + \left(y + wn + \left(\frac{_{-1}B_{0}}{P_{0}}\right) + (_{-1}b_{0}) - c\right) \frac{dR}{R}
+\end{equation}
+%-----------------------------------------------------------------------------------
+As follows from an application of Stutsky's equations, the relative price change $dR$ and $dw$ generate substitution effects on consumption and labor supply with familiar signs, and magnitudes given by a combination of Frisch elasticities and marginal propensities. 
+%-----------------------------------------------------------------------------------
+\subsubsection{The Net Wealth Revaluation}
+As shows in equation (\ref{e6}), the first term, $dy + ndw$ is the traditional effect from the change in the present value of income. This is the sum of the unearned income gain $dy$, and the change in earned income holding hours fixed $ndw$. The second term represents the effect from the immediate and permanent increase of assets and liabilities. Define the household's net nominal position $NNP$ as the present value of his nominal assets: 
+%-----------------------------------------------------------------------------------
+\begin{equation*}
+	NNP \equiv \sum_{s \geqslant 0} Q_{t} \left(\frac{_{-1}B_{t}}{P_{0}}\right)
+\end{equation*}
+%-----------------------------------------------------------------------------------
+Suppose for example that nominal prices unexpectedly rise inflation by $\frac{dP}{P} = 1\%$. A nominal saver with $NNP = \$30k$ experiences a wealth effect of $-NNP\frac{dP}{P}$, thus looses the equivalent of \$300. Conversely, a nominal borrower with $NNP = -\$30k$ gains the equivalent of \$300. 
+
+The final term in $d\Omega$ is the wealth effect from the change in the real interest rate. If we define the household's inhedged interest rate exposure as: 
+%-----------------------------------------------------------------------------------
+\begin{equation*}
+	URE \equiv y + wn + \left(\frac{_{-1}B_{0}}{P_{0}}\right) + (_{-1}b_{0}) -c 
+\end{equation*}
+%-----------------------------------------------------------------------------------
+This term is equal to $URE\frac{dR}{R}$. It represents the net saving requirement of the household at time $0$, from the point of view of date $-1$. It includes the stocks of financial assets that mature at date $0$ rather than interest flows. But the $URE$ is the difference between all maturing assets (including income) and liabilities (including planned consumption) at time $0$.  
+%-----------------------------------------------------------------------------------
+\iffalse 
+\begin{equation*}
+	\sum_{t \geqslant 1}q_{t}(y_{t} + w_{t}n_{t}) + \sum_{t \geqslant 1}q_{t}\left((_{-1}b_{t}) + \left(\frac{_{-1}B_{t}}{P_{t}}\right)\right) - \sum_{t \geqslant 1}q_{t}c_{t} = -URE
+\end{equation*}
+}
+\fi
+%-----------------------------------------------------------------------------------
+
+Since equation (\ref{e3})--(\ref{e5}) draws a distinction between exogenous changes in income and changes in wages, the next have rewrite the consumption response as a function of the total income change, inclusive of the labor supply response. Given an overall change in income $dY = dy + ndw + wdn$, the household's consumption response is: 
+%-----------------------------------------------------------------------------------
+
+
+\begin{equation}\label{e7}
+	dc = M\widehat{P}C \left ( dY - NNP \frac{dP}{P} + URE \frac{dR}{R} \right) - \sigma c (1- M\widehat{P}C)\frac{dR}{R} 
+\end{equation}
+\vspace{-.7em}
+\begin{equation*}
+ \text{where} \quad \quad M\widehat{P}C = \frac{MPC}{MPC + MPS} = \frac{MPC}{1 + \omega MPN} \geqslant MPC
+\end{equation*}
+%-----------------------------------------------------------------------------------
+Hence, once we have factored in the endogenous response of income to transfers, the relevant marginal propensity to consume be $M\widehat{P}C$, the number has run between $0$ and $1$ that determines how the remaining amount of income is split between consumption and savings. 
+%-----------------------------------------------------------------------------------
+\subsubsection{Shocks Under Incomplete Markets}
+As the previous section, it will only discuss influence behavior through its impact on the $MPC$. To model market incompleteness in a general form, we assume that the consumer can trade in $N$ stocks as well as in a nominal long-term bond. In period $t$, stocks pay real dividends $d_{t} = (d_{1t}, \ldots, d_{Nt})$ and can be purchased at real prices $S_{t} = (S_{1t}, \ldots, S_{Nt} )$; the consumer's portfolio of shares is denoted by $\theta_{t}$. Following the standard formulation in the macroeconomic textbook, we assume that the long-term bond can be bought at time $t$ at price $Q_{t}$ and is a promise to pay a geometrically declining nominal coupon with pattern $(1, \delta, \delta^{2}, \ldots)$ starting at date $t+1$. The current coupon which we denote $\Lambda_{t}$, then summarizes the entire bond portfolio, thus it is not necessary to separately keep track of future coupons. The household's budget constraint at date $t$ is now: 
+%-----------------------------------------------------------------------------------
+\begin{equation}
+	P_{t}c_{t} + Q_{t}(\Lambda_{t+1} - \delta \Lambda_{t}) + \theta_{t+1} \cdot P_{t}S_{t} = P_{t}y_{t} + P_{t}w_{t}n_{t} + \Lambda_{t} + \theta_{t} \cdot (P_{t}S_{t} + P_{t}d_{t})
+\end{equation}
+%-----------------------------------------------------------------------------------
+A borrowing constraint limits trading. This constraint specifies that real end-of-period wealth cannot be too negative: specifically,      
+%-----------------------------------------------------------------------------------
+\begin{equation}\label{e9}
+	\frac{Q_{t}\Lambda_{t+1} + \theta_{t+1} \cdot P_{t}S_{t}}{P_{t}} = - \frac{\overline{D}}{R_{t}}
+\end{equation}
+%-----------------------------------------------------------------------------------
+for some $\overline{D} \geq 0$, where $R_{t}$ is the real interest rate at time $t$. The constraint in equation (\ref{e9}) is a standard specification for borrowing limits. 
+
+Provided that the portfolio choice problem just described has a unique solution at date $t-1$, the household's net nominal position and his unhedged interest rate exposure are both uniquely pinned down in each state at time $t$. The consumer was indifferent between all portfolio choices. Here, these quantities are defined as: 
+%-----------------------------------------------------------------------------------
+\begin{align*}
+    NNP_{t} &\equiv (1 + Q_{t}\delta) \frac{\Lambda_{t}}{P_{t}} \\
+    URE_{t} &\equiv y_{t} + w_{t}n_{t} + \frac{\Lambda_{t}}{P{_t}} + \theta_{t} \cdot d_{t} - c_{t}
+\end{align*}
+%-----------------------------------------------------------------------------------
+As before, $NNP_{t}$ is the real market value of nominal wealth: the sum of the current coupon, $\Lambda_{t}$, and the value of the bond portfolio if it were sold immediately, $Q_{t}\delta\Lambda_{t}$. Similarly, $URE_{t}$ is maturing assets (including income, real coupon payments and dividends) net of maturing liabilities (including consumption). 
+
+Consider the predicted effects on consumption resulting from a simultaneous unexpected change in his current unearned income $dy$, his current real wage $dw$, the general price level $dP$ and the real interest rate $dR$, for one period only. Assume that this variation leads asset prices to adjust to reflect the change in discounting alone: $\frac{dQ}{Q} = \frac{dS_{j}}{S_{j}} = - \frac{dR}{R}$ for $j = 1, \ldots, N$. If $MPC = \frac{\partial c}{\partial y}$, and both $MPN$ and $MPS$ are similarly defined as the responses to current income transfers, them the positive results from equation (\ref{e3})--(\ref{e5}) carry through.   
+%-----------------------------------------------------------------------------------
+
+Assume that the consumer is at an interior optimum, at a binding borrowing constraint, or unable to access financial markets. Let $MPS = 0$, than his first order change in consumption $dc$ and labor supply $dn$ continue to be given by equations (\ref{e3}) and (\ref{e4}). In particular, writing $M\widehat{P}C \equiv \frac{MPC}{MPC + MPS}$, the relationship between $dc$ and the total change in income $dY = dy + ndw + wdn$ is still given by equation (\ref{e7}). 
+%-----------------------------------------------------------------------------------
+
+\subsubsection{Monetary Redistribution Channel}
+%-----------------------------------------------------------------------------------
+Aggregation of consumer responses as described by equation (\ref{e7}) shows that the per capita aggregate consumption change can be decomposed as the sum of five channels. To first order, in response to $dY_{i}$, $dY$, $dP$ and $dR$, aggregate consumption changes by: 
+%-----------------------------------------------------------------------------------
+\begin{equation}\begin{split}\label{e10}
+		dC = \underbrace{\mathbb{E}_{I} \left[\frac{Y_{i}}{Y} M\widehat{P}C_{i}\right] dY}_{\text{Aggregate income channel}} + \underbrace{\mathrm{Cov}_{I} \left(M\widehat{P}C_{i}, dY_{i} - Y_{i} \frac{dY}{Y}\right)}_{\text{Aggregate income channel}} - \underbrace{\mathrm{Cov}_{I} (M\widehat{P}C_{i}, NNP_{i}) \frac{dP}{P}}_{Fisher channel} \\
+		+ \left( \underbrace{\mathrm{Cov}_{I} (M\widehat{P}C_{i}, URE_{i})}_{\text{Interest rate exposure channel}} - \underbrace{\mathbb{E}_{I} \left[ \omega_{i} (1 - M\widehat{P}C_{i})c_{i}\right]}_{\text{Substitution channel}}\right) \frac{dR}{R}
+\end{split}\end{equation}
+%-----------------------------------------------------------------------------------
+The proof is given in appendix A.1. Decomposing $i$'s individual income changes as $dY_{i} = \frac{Y_{i}}{Y}dY + dY_{i} - \frac{Y_{i}}{Y}dY$ the sum of an aggregate component and a redistributive component, and using market clearing condition, the fiscal rule, and the fact that $\mathbb{E}_{I}\left[dY_{i} - \frac{Y_{i}}{Y} dY\right] = 0$ to transform expectations of products into covariances. This equation holds irrespective of the underlying model generating $MPCs$ and exposures at the micro level, as well as the relationship between $dY$, $dP$, and $dR$ at the macro level. Most of the bracketed terms are cross-sectional moments that are measurable in household level micro-data and are informative about the economy's macroeconomic response to a shock, no matter the source of this shock. 
+%-----------------------------------------------------------------------------------
+
+Heterogeneity implies a role for redistribute channels in the monetary transmission mechanism, except under special conditions. For intence, if aggragate income is distribted proportionlly to individual income, thus that $dY_{i} = \frac{Y_{i}}{Y}dY$; if no equilibrium asset trade is possible, so that agents consume all their incomes $Y_{i} = c_{i}$ and $NNP_{i} = URE_{i} = 0$; and if all agents have the same elasticity of intertemporal substitution $\sigma_{i} = \sigma$, then the representative agent response $\frac{dC}{C} = \sigma\frac{dR}{R}$ obtains even under heterogeneity. 
+
+%-----------------------------------------------------------------------------------
+The redistributive channels of MP can be signed and quantified by measuring the covariance terms in equation (\ref{e10}), either directly in micro data. The data suggests that following covariance is true:  
+%-----------------------------------------------------------------------------------
+\begin{align}
+	\label{e11} \mathrm{Cov}_{I} (M\widehat{P}C_{i}, URE_{i}) &< 0 \\
+	\label{e12} \mathrm{Cov}_{I} (M\widehat{P}C_{i}, NNP_{i}) &< 0 \\
+	\label{e13} \mathrm{Cov}_{I} (M\widehat{P}C_{i}, Y_{i}) &< 0
+\end{align}
+
+%-----------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------
+\iffalse 
+\begin{equation}
+	\gamma_{i} \equiv \frac{\partial \left(\frac{Y_{i}}{Y} - 1 \right) Y}{\left( \frac{Y_{i}}{Y} - 1 \right)} \frac{Y}{\partial Y} 
+\end{equation}
+\fi
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+\begin{equation}\label{e18}
+	\frac{dC}{C} = ( \mathcal{M} + \gamma \mathcal{E}_{Y}) \frac{dY}{Y} - \mathcal{E}_{P} \frac{dP}{P} + (\mathcal{E}_{R} - \sigma S) \frac{dR}{R} 
+\end{equation}
+%-----------------------------------------------------------------------------------
+% Please add the following required packages to your document preamble:
+
+% \usepackage{graphicx}
+\begin{table}[]
+	\centering
+	\caption{The Cross-Sectional Moments that Determine Consumption in Equation (\ref{e18})}
+	\label{t1}
+	\resizebox{.95\textwidth}{!}{%
+		\begin{tabular}{@{}cccc@{}} 
+			\toprule
+			\textbf{Variable} & \textbf{Definition} & \textbf{Description} & \textbf{MP Channel} \\ \midrule
+			$\mathcal{E}_{R}$ & $\mathrm{Cov}_{I} \left(MPC_{i}, \frac{URE_{i}}{\mathbb{E}_{I} \left[c_{i}\right]}\right)$ & Redistribution elasticity for $R$ & Interest rate exposure \\
+			
+			$\mathcal{E}_{R}^{NR}$ & $\mathbb{E}_{I} \left[ MPC_{i} \frac{c_{i}}{\mathbb{E}_{I} \left[c_{i}\right]}\right]$ & No rebate & --- \\
+			
+			$\widehat{S}$ & $\mathbb{E}_{I} \left[(1 - MPC_{i})\frac{c_{i}}{\mathbb{E}_{I}\left[c_{i}\right]}\right]$ & Hicksian scaling factor & Substitution \\ 
+			\midrule
+			
+			$\mathcal{E}_{P}$ & $\mathrm{Cov}_{I} \left(MPC_{i}, \frac{NNP_{i}}{\mathbb{E}_{I}\left[c_{i}\right]}\right)$ & Redistribution elasticity for $P$ & Fisher\\
+			
+			$\mathcal{E}_{P}^{NR}$ & $\mathbb{E}_{i}\left[MPC_{i}\frac{NNP_{i}}{\mathbb{E}_{I}\left[c_{i}\right]}\right]$& No rebate & --- \\
+			\midrule
+			$\mathcal{E}_{Y}$ & $\mathrm{Cov}\left(MPC_{i}, \frac{Y_{i}}{\mathbb{E}_{I}\left[c_{i}\right]}\right)$ & Redistribution elasticity for $Y$ & Earnings heterogeneity \\
+			
+			$\mathcal{M}$ & $\mathbb{E} \left[MPC_{i}\frac{Y_{i}}{\mathbb{E}_{I}\left[c_{i}\right]}\right]$ & Income-weighed $MPC$ & Aggregate income \\
+			\bottomrule
+		\end{tabular}%
+	}
+\begin{tablenotes}
+	\small
+	\item \textbf{Note:} This table based on the proof in appendix A2 and according to \citet{Auclert2019}. 
+\end{tablenotes} 
+
+\end{table}
+
+%-----------------------------------------------------------------------------------
+\begin{equation}
+	URE_{i} = Y_{i} - T_{t} - C_{i} + A_{i} - L_{t}
+\end{equation}
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+\begin{equation}
+	\mathrm{Cov}(MPC_{i}, URE_{i}) = \underbrace{\mathrm{Cov}(\mathbb{E} \left[MPC_{i} | Z_{i}\right], \mathbb{E} \left[URE_{i} | Z_{i}\right])}_{\text{Explained fraction of covariance}} + \underbrace{\mathbb{E}\left[\mathrm{Cov} (MPC_{i}, URE_{i} | Z_{i})\right]}_{\text{Unexplained fraction of covariance}}
+\end{equation}
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+\begin{align*}
+	MPC_{i} &= \alpha_{M} + \beta_{M}Z_{i} + \epsilon_{Mi} \\
+	URE_{i} &= \alpha_{R} + \beta_{R}Z_{i} + \epsilon_{Ri}
+\end{align*}
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+\begin{equation}
+\begin{align*}
+	\mathrm{Cov} (MPC_{i}, URE_{i}) &= \mathrm{Cov}\left(\widehat{MPC_{i}} + \widehat{\epsilon_{Mi}}, \widehat{URE_{I}} + \widehat{\epsilon_{Ri}}\right) \\
+	&= \mathrm{Cov}\left(\widehat{\beta_{M}}Z_{i} + \widehat{\epsilon_{Mi}}, \widehat{\beta_{R}}Z_{i} + \widehat{\epsilon_{Ri}}\right) \\
+	&= \mathrm{Var} \left(Z_{i}\right)\widehat{\beta_{M}}\widehat{\beta_{R}} + \mathrm{Cov} \left(\widehat{\epsilon_{Mi}}, \widehat{\epsilon_{Ri}}\right)
+\end{align*}
+\end{equation}
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------
 %------------------------------------------------------------------
 \section{Data Sources and Descriptive Statistics}\label{sec:data}
 %-----------------------------------------------------------------
@@ -175,10 +419,19 @@ Our analysis focus sorely Cambodia over the period 2008Q1-2020Q4. In fact, surve
 \subsection{Percentiles and the Inequality Index}	
 %-----------------------------------------------------------------------------------
 
-
+%-----------------------------------------------------------------------------------
 \section{Empirical Results}\label{sec:results}
+%-----------------------------------------------------------------------------------
 
-%-------------------------------------------------------------------
+%-----------------------------------------------------------------------------------
+\subsection{The Effects of Monetary Policy Shocks}
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
+\subsection{Redistribution Elasticities of Household Economy}
+%-----------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------------
 
 \section{Robustness Checks}\label{sec:robust}
 
