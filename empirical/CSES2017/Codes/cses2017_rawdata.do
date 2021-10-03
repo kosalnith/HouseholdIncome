@@ -3,7 +3,7 @@ CSES2017_rawdata.do
 
 created 16 September 2021 
 last modified 30 September 2021
-version: 4.0
+version: 5.0
 
 Written by Nith Kosal and Phay Thonnimith
 
@@ -19,14 +19,17 @@ clear
 set more off
 
 * Set directory
-global home "/Users/nithkosal/Documents/Kosal Documents/Research Projects/2021/Household Income/empirical/"
-global data "$home/0_data/data"
-global c17 "$home/0_data/rawdata/CSES2017"
+global home "/Users/nithkosal/Documents/Kosal Documents/Research Projects/2021/HouseholdIncome/empirical"
+
+global CSES2017 "$home/CSES2017"
+global rawdata "$CSES2017/Rawdata"
+global data "$CSES2017/Data"
+global code "$CSES2017/Codes"
 
 ****
 
 /*
-OUTPUT: CSES2017.DO
+OUTPUT: CSES2017.DTA
 
 	Definition of variables:
 	1. Income
@@ -51,12 +54,14 @@ OUTPUT: CSES2017.DO
 		nonfoodc 	is non food consumption
 		dgoodsc		is durable goods consumption in 2016 and 2017
 		housec 		is house expenditure 
+		houserentc	is expenditure on house rent 
 		dwellingc	is house expenditure 
 		landbuy2016 is total expenditure on land purchase in 2016
 		landbuy2017 is total expenditure on land purchase in 2017
 		buildc 		is expenditures on buiding  
 		educc 		is expenditure on education per household  
 		illnessc	is expenditure on healthcare
+		tax 		is expenditure on tax both salary and property 
 				
 	3. Asset
 		dgoodsasset	is durable goods asset if sell in the current price 
@@ -108,7 +113,7 @@ OUTPUT: CSES2017.DO
 *1. Import derived variable file 
 /*******************************************************************************/
 
-cd "$c17"
+cd "$rawdata"
 
 use "personecocurrent", replace 
 	sort hhid 
@@ -180,7 +185,7 @@ u "cleaning/hhinfo", replace
 	gen agemajearn = age if (agehead > 1) & (workers == 1)
 	gen educhead = educ if reltohead == 1 
                   
-collapse hweight urban agehead genderhead educhead educc wages hmainwork haddwork seaswork twork (count)nmember (sum)workers (sum)earner (sum)retired (max)agemajearn (mean)ageavg = age (max)agemax = age (min)agemin = age (sum)single (sum)divorced (sum)married, by (hhid)
+collapse urban agehead genderhead educhead educc wages hmainwork haddwork seaswork twork (count)nmember (sum)workers (sum)earner (sum)retired (max)agemajearn (mean)ageavg = age (max)agemax = age (min)agemin = age (sum)single (sum)divorced (sum)married (sum)hweight, by (hhid)
 
 	gen unemp = nmember - workers - retired if agemin >= 18
 	gen hmarried = 1 if (married >= 2) & (married <= 8)
@@ -410,7 +415,7 @@ save "cleaning/nonagriinc.dta"
 
 u "hhfoodconsumption", replace // food, beverages and tobacco consumption per househoulds during the last 7 days in section 1B
 	sort hhid 
-	by hhid: egen foodc = total(q01bc05) // both purchased and own production
+	by hhid: egen foodc = total(q01bc03) // both purchased and own production
 	replace foodc = foodc * 52 // food consumption per year 
 
 collapse foodc, by(hhid) // need to check with the Italy Survey 
@@ -418,33 +423,35 @@ save "cleaning/foodc.dta"
 
 u "hhrecallnonfood", replace // non-food expenditures per households in section 1C
 	sort hhid 
-	by hhid: egen c1 = total(q01cc06) if q01cc01 <= 6
-	replace c1 = c1 * 2 // per year 
-	by hhid: egen c2 = total(q01cc06) if q01cc01 == 7
-	by hhid: egen c3 = total(q01cc06) if q01cc01 == 8
-	replace c3 = c3 * 12 // per year 
+	by hhid: egen c1 = total(q01cc04) if q01cc01 <= 7
 
-	by hhid: egen c4 = total(q01cc06) if (q01cc01 == 9) | (q01cc01 == 10)
-	replace c4 = c4 * 4 // per year 
+	by hhid: egen c2 = total(q01cc04) if q01cc01 == 8
+	replace c2 = c2 * 12 // per year 
 
-	by hhid: egen c5 = total(q01cc06) if (q01cc01 == 11) | (q01cc01 == 12)
-	replace c5 = c5 * 2 // per year 
+	by hhid: egen c3 = total(q01cc04) if (q01cc01 == 9) | (q01cc01 == 10)
+	replace c3 = c3 * 3 // per year 
 
-	by hhid: egen c6 = total(q01cc06) if (q01cc01 >= 13) & (q01cc01 <= 15)
-	by hhid: egen c7 = total(q01cc06) if (q01cc01 >= 16) & (q01cc01 <= 23)
-	replace c7 = c7 * 12 // per year 
+	by hhid: egen c4 = total(q01cc04) if (q01cc01 >= 11) & (q01cc01 <= 15)
 
-	by hhid: egen c8 = total(q01cc06) if (q01cc01 >= 24) & (q01cc01 <= 27)
-	replace c8 = c8 * 2 // per year 
+	by hhid: egen c5 = total(q01cc04) if (q01cc01 >= 16) & (q01cc01 <= 23)
+	replace c5 = c5 * 12 // per year 
 
-	by hhid: egen c9 = total(q01cc06) if (q01cc01 == 28)
-	by hhid: egen c10 = total(q01cc06) if (q01cc01 >= 29) & (q01cc01 <= 31)
-	replace c10 = c10 * 12 // per year 
+	by hhid: egen c6 = total(q01cc04) if (q01cc01 >= 24) & (q01cc01 <= 27)
+	replace c6 = c6 * 2 // per year 
 
-	by hhid: egen c11 = total(q01cc06) if (q01cc01 >= 32) & (q01cc01 <= 33)
-	replace c10 = c11 * 2 // per year 
+	by hhid: egen c7 = total(q01cc04) if (q01cc01 == 28)
+	
+	by hhid: egen c8 = total(q01cc04) if (q01cc01 >= 29) & (q01cc01 <= 31)
+	replace c8 = c8 * 12 // per year 
 
-	by hhid: egen c12 = total(q01cc06) if (q01cc01 >= 34) & (q01cc01 <= 40)
+	by hhid: egen c9 = total(q01cc04) if (q01cc01 >= 32) & (q01cc01 <= 33)
+	replace c9 = c9 * 2 // per year 
+
+	by hhid: egen c10 = total(q01cc04) if q01cc01 == 34
+	
+	by hhid: egen tax = total(q01cc04) if (q01cc01 >= 35) & (q01cc01 <= 36)
+	
+	by hhid: egen c11 = total(q01cc04) if (q01cc01 >= 37) & (q01cc01 <= 40)
 	
 	replace c1 = 0 if (c1 == .)
 	replace c2 = 0 if (c2 == .)
@@ -456,12 +463,12 @@ u "hhrecallnonfood", replace // non-food expenditures per households in section 
 	replace c8 = 0 if (c8 == .)
 	replace c9 = 0 if (c9 == .)
 	replace c10 = 0 if (c10 == .)
+	replace tax = 0 if (tax == .)
 	replace c11 = 0 if (c11 == .)
-	replace c12 = 0 if (c12 == .)
 
-	gen nonfoodc = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 +c10 + c11 + c12
+	gen nonfoodc = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 +c10 + c11
 
-collapse nonfoodc, by(hhid)
+collapse nonfoodc tax, by(hhid)
 save "cleaning/nonfoodc.dta"
 
 u "hhhousing", replace // expenditures on the dwelling last month in section 4
@@ -478,7 +485,7 @@ u "hhhousing", replace // expenditures on the dwelling last month in section 4
 
 	by hhid: egen dwellingc = total(q04_30)
 
-collapse housec houseasset dwellingc, by(hhid)
+collapse housec houserentc houseasset dwellingc, by(hhid)
 save "cleaning/house.dta"
 
 u "hhcostcultivationcrops", replace 
@@ -625,6 +632,11 @@ u "cleaning/hhstructure", replace
 	replace irates = 0 if (irates == .)
 	replace landc = 0 if (landc == .)
 		 	
-cd "$data"
-save "CSES2017"	
+	encode hhid, generate(hhid1)
+	order hhid1 hhid
+	drop hhid
+	rename hhid1 hhid
+	order hhid province
+	
+save "$data/CSES2017"	
 /*******************************************************************************/
