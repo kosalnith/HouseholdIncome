@@ -25,7 +25,7 @@ program define cses2017_exp
 	*NOTE: if you want to run the code step by step, comment the "program" line above and set the following local variables
 	local maturity=$maturity
 	local epsilon=$epsilon
-	local frmasarm=$frmasarm
+	*local frmasarm=$frmasarm
 
 	
 	
@@ -56,24 +56,34 @@ program define cses2017_exp
 
 	* Income = total disposable income
 	gen ytotal = wages + nonagriinc + cropsinc + cropinc + riceinc + seedinc + liveinc + fishinc + pondinc + forestryinc + landinc + buildinc + otherinc
+	replace ytotal = ytotal/4000
 	
 	**** 1.1.2) Consumption: 
 
 	* Durable consumption (c is total consumption, cn is non durables)
-	egen cn = rowtotal(foodc nonfoodc housec houserentc)
-	egen c = rowtotal(dgoodsc landbuy2016 landbuy2017 cn)	
+	egen cn = rowtotal(foodc nonfoodc housec)
+	egen c = rowtotal(dgoodsc cn)	
+	replace c = c/4000
 	
+	replace cn = cn/4000
 	gen dur = c - cn
 		
 	* Consumption measure for URE: total expenditure, excluding a fraction epsilon of durables (epsilon=0 in benchmark)
 	gen ctotal = cn + (1 - `epsilon') * dur
 
 	**** 1.1.3) Maturing assets:
-	gen assettotal = dgoodsasset + houseasset + pondasset + landasset + landrasset + buildasset + buildrasset + nonagriinv + cropinv + liveinv1 + liveinv2 + fishinv + forestryinv + livestock + ricestock
+	
+	/*
+	As we don't saving account, bond, cash value of life insurance, collection, in here we 
+	assume that cash the rest after expenditure can use as maturing assets. 
+	*/
+	
+	gen assettotal = ytotal - ctotal
 	gen atotal = assettotal * sc_deposits
 	
 	**** 1.1.4) Maturing liabilities, L
 	gen liabilitistotal = loans + landc
+	replace liabilitistotal = liabilitistotal/4000
 	gen ltotal = liabilitistotal * sc_credcard
 	
 
@@ -88,12 +98,18 @@ program define cses2017_exp
 	*1.2.1) Nominal assets:
 
 	*Generate total nominal assets 
-	gen nom_asset = dgoodsasset + houseasset + pondasset + landasset + landrasset + buildasset + buildrasset + nonagriinv + cropinv + liveinv1 + liveinv2 + fishinv + forestryinv + livestock + ricestock
-
+	/*
+	Only to the extent invested in nominal assets
+	*/
+	
+	gen nom_asset =  nonagriinv + cropinv + liveinv1 + liveinv2 + fishinv + forestryinv
+	replace nom_asset = nom_asset/4000
+	
 	*1.2.2) Nominal liabilities:
 
 	*Generate total nominal liabilities (pf is total liabilities)
 	gen nom_liab = loans + landc
+	replace nom_liab = nom_liab/4000
 	
 	*1.2.3) Generate NNP
 
@@ -102,26 +118,24 @@ program define cses2017_exp
 
 	*Many observations have exactly zero value. To construct quantiles, add to all nnp a random value between -1 and 1 dollar.
 	replace NNP= (2*runiform() - 1) + NNP  
-	
-	// replace nom_liab = - nom_liab
-	
-	
+		
 	*
 	****1.3) INC: gross income
 	*
 
 	gen INC = wages + nonagriinc + cropsinc + cropinc + riceinc + seedinc + liveinc + fishinc + pondinc + forestryinc + landinc + buildinc + otherinc + tax 
+	replace INC = INC/4000 + (INC/4000)*0.1
 
 	*
 	******* Normalization
 	*
 	
 	*Record MPC from the survey question
-	gen MPC= c/ytotal
+	gen MPC= ctotal/ytotal
 	
 	* Normalize by mean annual consumption
 	svyset hhid [pweight = hweight]
-	svy: mean ctotal
+	svy: mean ctotal ytotal INC
 	mat meanc=e(b)
 	local mc=meanc[1,1]
 
@@ -138,7 +152,7 @@ program define cses2017_exp
 	gen NINC=INC/`mc'
 
 	*Express MPC in decimals
-	gen MPCn=MPC/100
+	gen MPCn=MPC
 	
 	*Count number of households
 	count
@@ -146,11 +160,12 @@ program define cses2017_exp
 	
 end
 
+
 ** Calculate covariances between MPCs and exposures
 
 capture program drop redmoments
 program redmoments, rclass
-	version 1.0
+	version 13.0
 
 	*Declare the arguments of the program
 	args var 
@@ -214,7 +229,7 @@ end
 
 capture program drop covdecomp
 program covdecomp, rclass
-	version 1.0
+	version 13.0
 	
 	* Arguments
 	args covvar expvar
@@ -290,3 +305,4 @@ program covdecomp, rclass
 	return matrix codec=codec
 	
 end
+

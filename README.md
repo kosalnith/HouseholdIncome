@@ -1,1 +1,1 @@
-# Menetary Policy and Household Income Distribution
+# Menetary Policy, Income Distribution and Structural Change

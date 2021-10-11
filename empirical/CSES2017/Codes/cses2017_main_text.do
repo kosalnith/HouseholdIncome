@@ -27,7 +27,6 @@ NOTE:
 
 ********************************/
 
-
 macro drop _all 
 capture program drop mpcest
 capture program drop redplot
@@ -40,8 +39,7 @@ capture log close
 
 *Paths for data and results
 
-
-global home "/Users/nithkosal/Documents/Kosal Documents/Research Projects/2021/HouseholdIncome/empirical"
+global home "/Users/nithkosal/Dropbox/Research Projects/HouseholdIncome/empirical"
 
 global CSES2017 "$home/CSES2017"
 global rawdata "$CSES2017/Rawdata"
@@ -63,31 +61,32 @@ global epsilon=0  /* benchmark: 0 (ie including all durable expenditures) */
 
 
 * Treat FRMs as ARMs? Used to evaluate potential for asymmetric effects			  
-global frmasarm=0 /* 0 treats them separately, benchmark
+* global frmasarm=0 /* 0 treats them separately, benchmark
 *					 1 treats fixed rate mortgage as adjustable rate mortgages*/
 					
 ****
 ******* (1) Construct exposure measures: URE, NNP, INC using shiw_exposures
 ****
 
-do "$code/cses2017_aux copy.do"
+do "$code/cses2017_aux.do"
 
 *Execute the program for baseline assumptions
-cses2017_exp $maturity $epsilon $frmasarm
+cses2017_exp $maturity $epsilon 
+*$frmasarm
 
 ***
 *** (2) Summary statistics for Table 1
 ***
 	
 quietly{
-	log using "$tables/table1.smcl", replace			
+	*log using "$tables/table1.smcl", replace			
 	noi di "Table 1, CSES2017"
 	noi di " "
 	noi tabstat NY NC NB ND NURE Nnom_asset Nnom_liab NNNP NINC MPCn [aw=hweight], stat(mean sd) col(stat) format(%5.2f)
 	noi di " "
 	noi di "Number of households in the sample"   "   " households
 	noi di " "
-	log close
+	*log close
 }	
 
 ****
@@ -112,14 +111,18 @@ foreach var in NURE NNNP NINC {
 		}
 
 	* Plot and save scatter 
+	grstyle init
+	grstyle set plain, horizontal grid
+	grstyle symbolsize p large
+
 	twoway (scatter MPCn x`var'), name(MPC`var', replace) legend(off)  graphregion(fcolor(white)) xtitle("") ytitle("") xlabel(1 "`lab1'" 21 "`lab21'"  41 "`lab41'"  61 "`lab61'"  81 "`lab81'" 100 "`lab100'", labsize(large)) ylabel(,labsize(large))
-	graph export "$graphs/fig2_MPC_`var'.pdf", as(pdf) replace
+	*graph export "$graphs/fig2_MPC_`var'.pdf", as(pdf) replace
 
 	** Text file for paper export 
 	gen index=_n
 	keep index MPCn
 	order index MPCn
-	export delimited using "$graphs/txt/fig2_MPC_`var'_SHIW.txt", delimiter(tab) novarnames replace
+	*export delimited using "$graphs/txt/fig2_MPC_`var'_SHIW.txt", delimiter(tab) novarnames replace
 
 	*Export average value of exposure measure in percentile, for xtick labels
 	clear
@@ -132,7 +135,7 @@ foreach var in NURE NNNP NINC {
 	
 	svmat av`var'	
 	keep if _n==1 | _n==21 | _n==41 | _n==61 | _n==81 | _n==100
-	export delimited using "$graphs/txt/fig2_pc_`var'_SHIW.txt", delimiter(tab) replace	
+	*export delimited using "$graphs/txt/fig2_pc_`var'_SHIW.txt", delimiter(tab) replace	
 	
 	restore
 		
@@ -153,7 +156,7 @@ quietly{
 	
 	log using "$tables/table4_`var'.smcl", replace
 
-	noi di "Table 4 for `var', SHIW" 
+	noi di "Table 4 for `var', CSES2017" 
 	
 	*Display mean values and confidence intervals
 	if "`var'"=="URE"{
@@ -201,7 +204,8 @@ quietly{
 foreach mat in 1 2 3 4 5{
 	quietly{
 		*Reconstruct URE position using the program shiw_exp with the alternative duration scenario
-		cses2017_exp `mat' $epsilon $frmasarm
+		cses2017_exp `mat' $epsilon 
+		*$frmasarm
 		
 		redmoments URE
 		
@@ -223,26 +227,11 @@ foreach mat in 1 2 3 4 5{
 
 	
 *Restore benchmark scenario and data
-qui cses2017_exp $maturity $epsilon $frmasarm
+qui cses2017_exp $maturity $epsilon 
+*$frmasarm
 
 ***** (6) Covariance decomposition
 *****
-
-
-*Merge with Jappelli and Pistaferri (2014) dataset to obtain additional variables
-merge 1:1 nquest using "$data/JPdata.dta"
-keep if _merge==3
-drop _merge
-
-
-*Generate additional variables as in Jappelli and Pistaferri (2014)
-
-*Citysize
-generate citysize=.
-replace citysize=1 if acomd1==1
-replace citysize=2 if acomd2==1
-replace citysize=3 if acomd3==1
-replace citysize=4 if acomd4==1
 
 *Age
 generate agejpbin=.

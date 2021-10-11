@@ -19,7 +19,7 @@ clear
 set more off
 
 * Set directory
-global home "/Users/nithkosal/Documents/Kosal Documents/Research Projects/2021/HouseholdIncome/empirical"
+global home "/Users/nithkosal/Dropbox/Research Projects/HouseholdIncome/empirical"
 
 global CSES2017 "$home/CSES2017"
 global rawdata "$CSES2017/Rawdata"
