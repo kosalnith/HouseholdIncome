@@ -1,9 +1,9 @@
 /*******************************
-CSES2017_aux.do
+cses2017_aux.do
 
 declares three functions
 * CSES2017_exp generates my main exposure measures URE, NNP and INC
-* redmoments reports the covariance between MPCs and these exposures
+* redmoments reports the covariance between APCs and these exposures
 * covdecomp performs a covariance decomposition 
 
 these programs are called from shiw_main_text.do and shiw_appendix.do
@@ -55,17 +55,18 @@ program define cses2017_exp
 	**** 1.1.1) Income
 
 	* Income = total disposable income
-	gen ytotal = wages + nonagriinc + cropsinc + cropinc + riceinc + seedinc + liveinc + fishinc + pondinc + forestryinc + landinc + buildinc + otherinc
-	replace ytotal = ytotal/4000
+	egen ytotal = rowtotal(wages nonagriinc cropsinc cropinc riceinc seedinc liveinc fishinc pondinc forestryinc landinc buildinc otherinc)
+	replace ytotal = ytotal/4045 
 	
 	**** 1.1.2) Consumption: 
 
 	* Durable consumption (c is total consumption, cn is non durables)
-	egen cn = rowtotal(foodc nonfoodc housec)
-	egen c = rowtotal(dgoodsc cn)	
-	replace c = c/4000
+	egen cn = rowtotal(foodc nonfoodc housec dwellingc buildc houserentc livec forestryc illnessc tax) 
+	   
+	egen c = rowtotal(dgoodsc landc landbuy2016 landbuy2017 educc cn)	
+	replace c = c/4045
 	
-	replace cn = cn/4000
+	replace cn = cn/4045
 	gen dur = c - cn
 		
 	* Consumption measure for URE: total expenditure, excluding a fraction epsilon of durables (epsilon=0 in benchmark)
@@ -79,11 +80,15 @@ program define cses2017_exp
 	*/
 	
 	gen assettotal = ytotal - ctotal
+	
+	*egen nasset = rowtotal(dgoodsasset houseasset pondasset landasset buildasset)
+	
+
 	gen atotal = assettotal * sc_deposits
 	
 	**** 1.1.4) Maturing liabilities, L
-	gen liabilitistotal = loans + landc
-	replace liabilitistotal = liabilitistotal/4000
+	gen liabilitistotal = loans
+	replace liabilitistotal = liabilitistotal/4045
 	gen ltotal = liabilitistotal * sc_credcard
 	
 
@@ -102,14 +107,14 @@ program define cses2017_exp
 	Only to the extent invested in nominal assets
 	*/
 	
-	gen nom_asset =  nonagriinv + cropinv + liveinv1 + liveinv2 + fishinv + forestryinv
-	replace nom_asset = nom_asset/4000
+	egen nom_asset =  rowtotal(nonagriinv ricestock cropinv liveinv1 liveinv2 fishinv forestryinv livestock)
+	replace nom_asset = nom_asset/4045
 	
 	*1.2.2) Nominal liabilities:
 
 	*Generate total nominal liabilities (pf is total liabilities)
-	gen nom_liab = loans + landc
-	replace nom_liab = nom_liab/4000
+	gen nom_liab = loans
+	replace nom_liab = nom_liab/4045
 	
 	*1.2.3) Generate NNP
 
@@ -123,36 +128,46 @@ program define cses2017_exp
 	****1.3) INC: gross income
 	*
 
-	gen INC = wages + nonagriinc + cropsinc + cropinc + riceinc + seedinc + liveinc + fishinc + pondinc + forestryinc + landinc + buildinc + otherinc + tax 
-	replace INC = INC/4000 + (INC/4000)*0.1
-
+	gen inctax = wage + nonagriinc
+	replace inctax = inctax/4045
+	replace inctax = inctax + (inctax * 0.1)
+	
+	egen INC = rowtotal(cropsinc cropinc riceinc seedinc liveinc fishinc pondinc forestryinc landinc buildinc otherinc tax)
+	replace INC = INC/4045
+	replace INC = INC + inctax
 	*
 	******* Normalization
 	*
 	
-	*Record MPC from the survey question
-	gen MPC= ctotal/ytotal
+	*Record APC from the survey question	
 	
+	gen stotal = ytotal - ctotal
+	
+	gen ytotal_new = ctotal + 0 if stotal <0
+	replace ytotal_new = ytotal if ytotal_new == .
+	
+	gen APC = ctotal/ytotal_new
+		
 	* Normalize by mean annual consumption
 	svyset hhid [pweight = hweight]
 	svy: mean ctotal ytotal INC
 	mat meanc=e(b)
 	local mc=meanc[1,1]
 
-	gen NY=ytotal/`mc'
-	gen NC=ctotal/`mc'
-	gen NB=atotal/`mc'
-	gen ND=ltotal/`mc'
-	gen NURE=URE/`mc'
+	gen NY = ytotal/`mc'
+	gen NC = ctotal/`mc'
+	gen NB = atotal/`mc'
+	gen ND = ltotal/`mc'
+	gen NURE = URE/`mc'
 
-	gen Nnom_asset=nom_asset/`mc'
-	gen Nnom_liab=nom_liab/`mc'
-	gen NNNP=NNP/`mc'
+	gen Nnom_asset = nom_asset/`mc'
+	gen Nnom_liab = nom_liab/`mc'
+	gen NNNP = NNP/`mc'
 
-	gen NINC=INC/`mc'
+	gen NINC = INC/`mc'
 
-	*Express MPC in decimals
-	gen MPCn=MPC
+	*Express APC in decimals
+	gen APCn = APC
 	
 	*Count number of households
 	count
@@ -161,7 +176,7 @@ program define cses2017_exp
 end
 
 
-** Calculate covariances between MPCs and exposures
+** Calculate covariances between APCs and exposures
 
 capture program drop redmoments
 program redmoments, rclass
@@ -186,8 +201,8 @@ program redmoments, rclass
 	qui gen N`var'c=`var'centered/`mc'
 
 	*Obtain partial equilibrium and full redistribution elasticities for each observation
-	qui gen redPE_`var'=MPCn*N`var'
-	qui gen red_`var'=MPCn*N`var'c
+	qui gen redPE_`var'=APCn*N`var'
+	qui gen red_`var'=APCn*N`var'c
 	
 	*Obtain full redistriution elasticity and confidence intervals
 	qui svy: mean red_`var'
@@ -206,7 +221,7 @@ program redmoments, rclass
 		qui gen cm=ctotal/`mc'
 
 		*Scaling factor S
-		qui gen subst=(1-MPCn)*cm
+		qui gen subst=(1-APCn)*cm
 
 		*Mean scaling factor and confidence intervals
 		qui svy: mean subst
@@ -233,18 +248,18 @@ program covdecomp, rclass
 	
 	* Arguments
 	args covvar expvar
-	* covvar is variable whose covariance with MPC we want to decompose (eg NURE)
+	* covvar is variable whose covariance with APC we want to decompose (eg NURE)
 	* expvar is list of variables to use in decomposition
 	
-	* Estimate the correlation coefficient for MPC and covvar
-	qui correlate MPCn `covvar' [w=hweight], cov
-	local covMPCX=`r(cov_12)'
+	* Estimate the correlation coefficient for APC and covvar
+	qui correlate APCn `covvar' [w=hweight], cov
+	local covAPCX=`r(cov_12)'
 
-	* Step 1 regress MPC on explanatory variables
-	qui reg MPCn `expvar' [pweight=hweight]
-	predict MPChat, xb
-	predict MPCeps, residuals
-	matrix bMPC=e(b)
+	* Step 1 regress APC on explanatory variables
+	qui reg APCn `expvar' [pweight=hweight]
+	predict APChat, xb
+	predict APCeps, residuals
+	matrix bAPC=e(b)
 
 	* Step 2 regress URE on explanatory variables
 	qui reg `covvar' `expvar' [pweight=hweight]
@@ -262,33 +277,33 @@ program covdecomp, rclass
 	matrix codec=corr
 	forvalues i = 1/`dim' {
 		forvalues j = 1/`dim' {
-			 matrix codec[`i',`j']= 100*bMPC[1,`i']*bX[1,`j']*corr[`i',`j']/`covMPCX'
+			 matrix codec[`i',`j']= 100*bAPC[1,`i']*bX[1,`j']*corr[`i',`j']/`covAPCX'
 		}
 	}
 	
 	* First variable contribution (most useful if univariate, but not only)
-	local bMPCY1=bMPC[1,1]
+	local bAPCY1=bAPC[1,1]
 	local bX1=bX[1,1]
 	local var1=corr[1,1]
 	local frac1=codec[1,1]
 	
-	qui correlate MPChat Xhat [w=hweight], cov
+	qui correlate APChat Xhat [w=hweight], cov
 	local covhat=`r(cov_12)'
-	local pcexp=100*`covhat'/`covMPCX'
+	local pcexp=100*`covhat'/`covAPCX'
 	
-	qui correlate MPCeps Xeps [w=hweight], cov
+	qui correlate APCeps Xeps [w=hweight], cov
 	local coveps=`r(cov_12)'
-	local pcunexp=100*`coveps'/`covMPCX'
+	local pcunexp=100*`coveps'/`covAPCX'
 	
 	
 	disp ""
 	disp ""
 	disp "X  = `covvar' |  Explanatory variable(s) = `expvar'"
 	disp "********************************************************"
-	*disp "Corr(MPC, X)           = " %3.2f `covMPCX'
+	*disp "Corr(APC, X)           = " %3.2f `covAPCX'
 	disp ""
 	disp "var(Y1)                = " %4.2f `var1'
-	disp "beta(MPC, Y1)          = " %4.3f `bMPCY1'
+	disp "beta(APC, Y1)          = " %4.3f `bAPCY1'
 	disp "beta(X,Y1)             = " %4.3f `bX1'
 	disp "Covariance explained = " %3.0f `pcexp' "%"
 	disp "Decomposition of explained fraction: "
@@ -297,12 +312,11 @@ program covdecomp, rclass
 	disp ""
 
 
-	drop Xhat Xeps MPChat MPCeps
+	drop Xhat Xeps APChat APCeps
 	
-	return scalar covMPCX=`covMPCX'
+	return scalar covAPCX=`covAPCX'
 	return scalar pcexp=`pcexp'
 	return scalar pcunexp=`pcunexp'
 	return matrix codec=codec
 	
 end
-

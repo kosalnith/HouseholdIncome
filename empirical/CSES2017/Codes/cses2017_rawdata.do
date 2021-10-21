@@ -1,9 +1,9 @@
 /***
-CSES2017_rawdata.do
+File Name: cses2017_rawdata.do
 
 created 16 September 2021 
-last modified 30 September 2021
-version: 5.0
+last modified 15 October 2021
+version: 11.0
 
 Written by Nith Kosal and Phay Thonnimith
 
@@ -83,7 +83,12 @@ OUTPUT: CSES2017.DTA
 	4. Liability
 		loans 		is total amount borrowed 
 		irates		is total amount interest rate per year 
-		landc		is expenditures on land rent for agricultural investment 
+		landc		is expenditures on land rent for agricultural investment
+		lprod 		is the credit for business activities such as in agicultural and non-agicultural activities
+		lc 		is loans household consumption needs, illness, injury, accident, rituals, improvement of dwelling, consumer durables
+		lrefin 		is loans for servicing and existing debts
+		lother 		is loans for other reasons
+		lnonprod 	is loans for non production activities 
 
 	5. Household Structure
 		hhid 		is the household identification 
@@ -131,7 +136,7 @@ use "personecocurrent", replace
 
 	gen twork = hmainwork + haddwork
 	gen workers = (q15_c08 == 1) | (q15_c08 == 2) | (q15_c08 == 3) | (q15_c08 == 4)
-	gen retired = (q15_c31==6)
+	gen retired = (q15_c31 ==6 )
 	gen earner = (q15_c08 == 1) | (q15_c08 == 2) | (q15_c08 == 3) // the number of household earners
 
 keep hhid persid wages hmainwork haddwork seaswork twork workers retired earner  
@@ -158,7 +163,7 @@ use "hhmembers", replace
 	gen divorced = 1 if q01ac09 == 2
 	by hhid: generate nmember = _n // the number of household members
 	gen genderhead = gender if q01ac06 == 1 
-	gen reltohead = q01ac06
+	gen reltohead = q01ac06 // relationship with the head
 
 keep hhid persid nmember agehead gender age married single divorced genderhead reltohead
 save "cleaning/hhinfo.dta"
@@ -188,6 +193,7 @@ u "cleaning/hhinfo", replace
 collapse urban agehead genderhead educhead educc wages hmainwork haddwork seaswork twork (count)nmember (sum)workers (sum)earner (sum)retired (max)agemajearn (mean)ageavg = age (max)agemax = age (min)agemin = age (sum)single (sum)divorced (sum)married (sum)hweight, by (hhid)
 
 	gen unemp = nmember - workers - retired if agemin >= 18
+	replace unemp = 0 if unemp == .
 	gen hmarried = 1 if (married >= 2) & (married <= 8)
 	replace hmarried = 0 if married == 0
 
@@ -423,52 +429,13 @@ save "cleaning/foodc.dta"
 
 u "hhrecallnonfood", replace // non-food expenditures per households in section 1C
 	sort hhid 
-	by hhid: egen c1 = total(q01cc04) if q01cc01 <= 7
-
-	by hhid: egen c2 = total(q01cc04) if q01cc01 == 8
-	replace c2 = c2 * 12 // per year 
-
-	by hhid: egen c3 = total(q01cc04) if (q01cc01 == 9) | (q01cc01 == 10)
-	replace c3 = c3 * 3 // per year 
-
-	by hhid: egen c4 = total(q01cc04) if (q01cc01 >= 11) & (q01cc01 <= 15)
-
-	by hhid: egen c5 = total(q01cc04) if (q01cc01 >= 16) & (q01cc01 <= 23)
-	replace c5 = c5 * 12 // per year 
-
-	by hhid: egen c6 = total(q01cc04) if (q01cc01 >= 24) & (q01cc01 <= 27)
-	replace c6 = c6 * 2 // per year 
-
-	by hhid: egen c7 = total(q01cc04) if (q01cc01 == 28)
+	gen nonfoodc = q01cc06	
+	replace nonfoodc = q01cc06 * 12 if q01cc01 == 1 | q01cc01 == 2 | q01cc01 == 4 | q01cc01 == 5 | q01cc01 == 6 | q01cc01 == 8
+	replace nonfoodc = q01cc06 * 2 if q01cc01 == 9 
 	
-	by hhid: egen c8 = total(q01cc04) if (q01cc01 >= 29) & (q01cc01 <= 31)
-	replace c8 = c8 * 12 // per year 
+	gen tax = q01cc06 if q01cc01 == 22 | q01cc01 == 23 
 
-	by hhid: egen c9 = total(q01cc04) if (q01cc01 >= 32) & (q01cc01 <= 33)
-	replace c9 = c9 * 2 // per year 
-
-	by hhid: egen c10 = total(q01cc04) if q01cc01 == 34
-	
-	by hhid: egen tax = total(q01cc04) if (q01cc01 >= 35) & (q01cc01 <= 36)
-	
-	by hhid: egen c11 = total(q01cc04) if (q01cc01 >= 37) & (q01cc01 <= 40)
-	
-	replace c1 = 0 if (c1 == .)
-	replace c2 = 0 if (c2 == .)
-	replace c3 = 0 if (c3 == .)
-	replace c4 = 0 if (c4 == .)
-	replace c5 = 0 if (c5 == .)
-	replace c6 = 0 if (c6 == .)
-	replace c7 = 0 if (c7 == .)
-	replace c8 = 0 if (c8 == .)
-	replace c9 = 0 if (c9 == .)
-	replace c10 = 0 if (c10 == .)
-	replace tax = 0 if (tax == .)
-	replace c11 = 0 if (c11 == .)
-
-	gen nonfoodc = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 +c10 + c11
-
-collapse nonfoodc tax, by(hhid)
+collapse (sum) nonfoodc (sum)tax, by(hhid)
 save "cleaning/nonfoodc.dta"
 
 u "hhhousing", replace // expenditures on the dwelling last month in section 4
@@ -500,8 +467,14 @@ u "hhliabilities", replace
 	by hhid: egen loans = total(q06_c06) // total credits from the bank and others
 	by hhid: egen irate = total(q06_c08) 
 	gen irates = irate * 12 // the interest rate per year as credits 
+	
+	gen lprod = (q06_c05 == 1 | q06_c05 == 2) if q06_c05! = .
+	gen lc = (q06_c05 >= 3 & q06_c05 <= 8) if q06_c05! = .
+	gen lrefin = (q06_c05 == 9) if q06_c05! = .
+	gen lother = (q06_c05 == 10) if q06_c05! = .
+	gen lnonprod =(q06_c05 >= 3) if q06_c05! = .
 
-collapse loans irates, by(hhid)
+collapse loans irates lprod lc lrefin lother lnonprod, by(hhid)
 save "cleaning/loans.dta"
 
 u "hhdurablegoods", replace 
@@ -516,7 +489,7 @@ u "personillness", replace
 	sort hhid 
 	gen illnessc1 = q13bc10 + q13bc11
 	by hhid: egen illnessc = total(illnessc1)
-	replace illnessc = illnessc * 5 // we asumme 5 month 
+	replace illnessc = illnessc * 6 // we asumme 6 month 
 
 collapse illnessc, by(hhid)
 save "cleaning/illnessc.dta"
@@ -525,7 +498,9 @@ u "weighthouseholds", replace
 	sort psu
 	merge m:1 psu using "psulisting"
 	rename province_name province
-	keep hhid province 
+	rename province_code pcode
+
+	keep hhid province pcode
 save "cleaning/province"	
 
 *2. Merge all datasets into a file 
@@ -606,6 +581,7 @@ u "cleaning/hhstructure", replace
 	replace dgoodsc = 0 if (dgoodsc == .)
 	replace housec = 0 if (housec == .)
 	replace dwellingc = 0 if (dwellingc == .)
+	replace landc = 0 if (landc == .)
 	replace landbuy2016 = 0 if (landbuy2016 == .)
 	replace landbuy2017 = 0 if (landbuy2017 == .)
 	replace buildc = 0 if (buildc == .)
@@ -629,14 +605,77 @@ u "cleaning/hhstructure", replace
 	replace ricestock = 0 if (ricestock == .)
 	
 	replace loans = 0 if (loans == .)
-	replace irates = 0 if (irates == .)
-	replace landc = 0 if (landc == .)
 		 	
+	
+	gen year = 2017
+	
+*Gender
+	lab def 	gender 0 "Female" 1 "Male"
+	lab val 	genderhead gender	
+	
+	
+	encode pcode, generate(pcode1)
 	encode hhid, generate(hhid1)
-	order hhid1 hhid
-	drop hhid
+	
+	drop hhid pcode
+
 	rename hhid1 hhid
-	order hhid province
+	rename pcode1 pcode
+
+	
+*Generate regions
+	gen     region=1 if pcode==12	 /* Phnom Penh*/
+	replace region=2 if pcode==3 | pcode==8 | pcode==14 | pcode==20 | pcode==21 /*Central Plains*/
+	replace region=3 if pcode==1  | pcode==2  | pcode==4  | pcode==6  | pcode==15 | pcode==17 | pcode==22 | pcode==24 /*Tonle Sap*/
+	replace region=4 if pcode==7  | pcode==9  | pcode==18 /*Coastal*/  
+	replace region=5 if pcode==5 | pcode==10 | pcode==11 | pcode==13 | pcode==16 | pcode==19 /*Plateau and Mountains*/
+	
+	lab def 	regi 1 "Phnom Penh" 2 "Central Plains" 3 "Tonle Sap" 4 "Coastal" 5 "Plateau and Mountains"
+	lab val 	region regi
+
+*Age
+	generate agejpbin=.
+	replace agejpbin=1 if agehead<=30
+	replace agejpbin=2 if agehead>30 & agehead<=45
+	replace agejpbin=3 if agehead>45 & agehead<=60
+	replace agejpbin=4 if agehead>60 
+	
+	lab def age 1 "Under 30 Years" 2 "31-45 Years" 3 "46-60 Years" 4 "Above 61 Years" 
+	lab val agejpbin age
+
+*Generate education level by group of year   	
+	gen educ = 1 if (educhead >=1) & (educhead <=6)
+	replace educ = 2 if (educhead >=7) & (educhead <=9)
+	replace educ = 3 if (educhead >=10) & (educhead <=12)
+	replace educ = 4 if (educhead >=13) & (educhead <=17)
+	replace educ = 5 if educhead ==18
+	replace educ = 6 if (educhead ==19) & (educhead ==20)	
+	
+	lab def edu 1 "Primary School" 2 "Secondary School" 3 "High School" 4 "Junior College" 5 "Bachelor Degree" 6 "Masters and Doctorate Degree"
+	lab val educ edu
+	
+	gen rloans = 1 if lprod == 1
+	replace rloans = 2 if (lc == 1) & (lnonprod == 1)
+	replace rloans = 3 if lrefin == 1
+	replace rloans = 4 if lother == 1
+
+	lab def rl 1 "Production" 2 "Consumption" 3 "Repay Other Loans" 4 "Other Purposes"
+	lab val rloans rl
+	
+	lab def urban_rural 1 "Urban" 2 "Rural"
+	lab val urban urban_rural
+
+	drop lprod lc lrefin lother lnonprod
+	
+	order year hhid hweight region pcode province urban agejpbin agehead genderhead educ educhead ///
+	married hmarried agemajearn	ageavg agemax agemin single divorced nmember ///
+	hmainwork haddwork seaswork twork workers earner retired unemp landcol wages nonagriinc ///
+	cropsinc cropinc riceinc seedinc liveinc fishinc pondinc forestryinc ///
+	landinc buildinc otherinc foodc livec forestryc nonfoodc dgoodsc housec ///
+	houserentc dwellingc landc landbuy2016 landbuy2017 buildc educc illnessc tax ///
+	dgoodsasset houseasset pondasset landasset landrasset buildasset buildrasset ///
+	nonagriinv ricestock croprotted cropinv liveinv1 liveinv2 fishinv forestryinv livestock ///
+	loans irates rloans
 	
 save "$data/CSES2017"	
 /*******************************************************************************/

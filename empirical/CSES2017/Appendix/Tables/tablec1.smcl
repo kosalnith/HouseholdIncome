@@ -1,0 +1,47 @@
+{smcl}
+{com}{sf}{ul off}{res}Table C.1
+ 
+
+{txt}{ralign 12:variable} {...}
+{c |}         N      mean        p5       p25       p50       p75       p95
+{hline 13}{c +}{hline 70}
+{ralign 12:ytotal} {...}
+{c |}{...}
+ {res}    3,839     8,319       491     2,352     4,511     7,790    20,739
+{txt}{ralign 12:ctotal} {...}
+{c |}{...}
+ {res}    3,839     6,207     1,844     3,127     4,667     7,140    14,298
+{txt}{ralign 12:atotal} {...}
+{c |}{...}
+ {res}    3,839     4,225   -16,133    -4,858      -570     4,641    25,592
+{txt}{ralign 12:ltotal} {...}
+{c |}{...}
+ {res}    3,839     2,301         0         0         0     1,978     9,889
+{txt}{ralign 12:URE} {...}
+{c |}{...}
+ {res}    3,839     4,037   -29,880    -8,784    -1,783     5,665    34,144
+{txt}{ralign 12:nom_asset} {...}
+{c |}{...}
+ {res}    3,839     6,210         0       119       729     2,279     7,417
+{txt}{ralign 12:nom_liab} {...}
+{c |}{...}
+ {res}    3,839     1,150         0         0         0       989     4,944
+{txt}{ralign 12:NNP} {...}
+{c |}{...}
+ {res}    3,839     5,060    -3,237        -1       334     1,669     6,365
+{txt}{ralign 12:INC} {...}
+{c |}{...}
+ {res}    3,839     8,921       519     2,519     4,805     8,312    22,484
+{txt}{hline 13}{c BT}{hline 70}
+
+{ralign 12:variable} {...}
+{c |}         N      mean        p5       p25       p50       p75       p95
+{hline 13}{c +}{hline 70}
+{ralign 12:APCn} {...}
+{c |}{...}
+   {res}3839.00      0.81      0.26      0.63      1.00      1.00      1.00
+{txt}{hline 13}{c BT}{hline 70}
+{res} 
+Number of households in the sample   3839
+{smcl}
+{res}{sf}{ul off}

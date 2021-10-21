@@ -1,0 +1,30 @@
+{smcl}
+{txt}{sf}{ul off}{res}Table C8 for URE, CSES 2017
+{txt}(596 missing values generated)
+(596 missing values generated)
+(596 missing values generated)
+(596 missing values generated)
+
+
+X  = NNNP |  Explanatory variable(s) = agejpbin genderhead hmarried educhead nmember unemp region
+********************************************************
+
+var(Y1)                = 0.76
+beta(APC, Y1)          = -0.010
+beta(X,Y1)             = 0.436
+Covariance explained =   5%
+Decomposition of explained fraction: 
+{res}
+{txt}codec[7,7]
+              agejpbin  genderhead    hmarried    educhead     nmember       unemp      region
+  agejpbin {res}       0.71       -0.05        0.03       -0.35        0.28       -0.05       -0.11
+{txt}genderhead {res}      -0.01        0.04       -0.02        0.03        0.01        0.00        0.01
+{txt}  hmarried {res}      -0.01        0.02       -0.03        0.02        0.03        0.00        0.00
+{txt}  educhead {res}      -0.02        0.01       -0.00        0.38       -0.02       -0.00       -0.04
+{txt}   nmember {res}       0.53        0.15       -0.28       -0.88        5.58        0.11        0.15
+{txt}     unemp {res}       0.01       -0.00        0.00        0.00       -0.01       -0.01       -0.01
+{txt}    region {res}       0.04       -0.02        0.01        0.27       -0.03       -0.02       -1.04
+{reset}
+
+{smcl}
+{txt}{sf}{ul off}

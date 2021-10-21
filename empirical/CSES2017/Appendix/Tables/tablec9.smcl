@@ -1,0 +1,30 @@
+{smcl}
+{txt}{sf}{ul off}{res}Table C9 for Y, CSES 2017
+{txt}(596 missing values generated)
+(596 missing values generated)
+(596 missing values generated)
+(596 missing values generated)
+
+
+X  = NINC |  Explanatory variable(s) = agejpbin genderhead hmarried educhead nmember unemp region
+********************************************************
+
+var(Y1)                = 0.76
+beta(APC, Y1)          = -0.010
+beta(X,Y1)             = 0.195
+Covariance explained =   6%
+Decomposition of explained fraction: 
+{res}
+{txt}codec[7,7]
+              agejpbin  genderhead    hmarried    educhead     nmember       unemp      region
+  agejpbin {res}       0.32       -0.01       -0.00       -0.13        0.24       -0.01        0.01
+{txt}genderhead {res}      -0.00        0.01        0.00        0.01        0.01        0.00       -0.00
+{txt}  hmarried {res}      -0.00        0.01        0.00        0.01        0.03        0.00       -0.00
+{txt}  educhead {res}      -0.01        0.00        0.00        0.14       -0.02       -0.00        0.00
+{txt}   nmember {res}       0.24        0.03        0.03       -0.31        4.91        0.03       -0.01
+{txt}     unemp {res}       0.00       -0.00       -0.00        0.00       -0.01       -0.00        0.00
+{txt}    region {res}       0.02       -0.00       -0.00        0.10       -0.02       -0.00        0.10
+{reset}
+
+{smcl}
+{txt}{sf}{ul off}
