@@ -1,0 +1,64 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/nithkosal/Dropbox/Research Projects/HouseholdIncome/empirical/Marcodata/Tables/table_3.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}16 Nov 2021, 09:19:19
+{txt}
+{com}.                 vargranger
+
+{txt}{col 4}Granger causality Wald tests
+{col 3}{text}{c TLC}{hline 19}{hline 19}{c TT}{hline 9}{hline 6}{hline 12}{c TRC}
+{col 3}{text}{c |}          Equation{col 23}          Excluded{col 42}{c |}   chi2 {col 52}   df{col 58}Prob > chi2{col 70}{c |}
+{col 3}{text}{c LT}{hline 19}{hline 19}{c +}{hline 9}{hline 6}{hline 12}{c RT}
+{col 3}{text}{c |}             D_inf{col 23}              D.m2{col 42}{c |}{result}{space 1} 36.251{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}             D_inf{col 23}          D.output{col 42}{c |}{result}{space 1} 8.4641{col 52}    4{col 58}{space 2} 0.076{col 70}{text}{c |}
+{col 3}{text}{c |}             D_inf{col 23}           D.unemp{col 42}{c |}{result}{space 1} 3.2946{col 52}    4{col 58}{space 2} 0.510{col 70}{text}{c |}
+{col 3}{text}{c |}             D_inf{col 23}           D.erate{col 42}{c |}{result}{space 1} 6.5421{col 52}    4{col 58}{space 2} 0.162{col 70}{text}{c |}
+{col 3}{text}{c |}             D_inf{col 23}           D.irate{col 42}{c |}{result}{space 1}    3.4{col 52}    4{col 58}{space 2} 0.493{col 70}{text}{c |}
+{col 3}{text}{c |}             D_inf{col 23}               ALL{col 42}{c |}{result}{space 1}  56.64{col 52}   20{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c LT}{hline 19}{hline 19}{c +}{hline 9}{hline 6}{hline 12}{c RT}
+{col 3}{text}{c |}              D_m2{col 23}             D.inf{col 42}{c |}{result}{space 1} 15.413{col 52}    4{col 58}{space 2} 0.004{col 70}{text}{c |}
+{col 3}{text}{c |}              D_m2{col 23}          D.output{col 42}{c |}{result}{space 1} 12.027{col 52}    4{col 58}{space 2} 0.017{col 70}{text}{c |}
+{col 3}{text}{c |}              D_m2{col 23}           D.unemp{col 42}{c |}{result}{space 1} 3.0164{col 52}    4{col 58}{space 2} 0.555{col 70}{text}{c |}
+{col 3}{text}{c |}              D_m2{col 23}           D.erate{col 42}{c |}{result}{space 1}  24.22{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}              D_m2{col 23}           D.irate{col 42}{c |}{result}{space 1} 10.307{col 52}    4{col 58}{space 2} 0.036{col 70}{text}{c |}
+{col 3}{text}{c |}              D_m2{col 23}               ALL{col 42}{c |}{result}{space 1} 48.876{col 52}   20{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c LT}{hline 19}{hline 19}{c +}{hline 9}{hline 6}{hline 12}{c RT}
+{col 3}{text}{c |}          D_output{col 23}             D.inf{col 42}{c |}{result}{space 1} 9.7254{col 52}    4{col 58}{space 2} 0.045{col 70}{text}{c |}
+{col 3}{text}{c |}          D_output{col 23}              D.m2{col 42}{c |}{result}{space 1} 8.3843{col 52}    4{col 58}{space 2} 0.078{col 70}{text}{c |}
+{col 3}{text}{c |}          D_output{col 23}           D.unemp{col 42}{c |}{result}{space 1}    6.7{col 52}    4{col 58}{space 2} 0.153{col 70}{text}{c |}
+{col 3}{text}{c |}          D_output{col 23}           D.erate{col 42}{c |}{result}{space 1} 40.173{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}          D_output{col 23}           D.irate{col 42}{c |}{result}{space 1}   24.6{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}          D_output{col 23}               ALL{col 42}{c |}{result}{space 1} 68.961{col 52}   20{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c LT}{hline 19}{hline 19}{c +}{hline 9}{hline 6}{hline 12}{c RT}
+{col 3}{text}{c |}           D_unemp{col 23}             D.inf{col 42}{c |}{result}{space 1}  13.35{col 52}    4{col 58}{space 2} 0.010{col 70}{text}{c |}
+{col 3}{text}{c |}           D_unemp{col 23}              D.m2{col 42}{c |}{result}{space 1} 9.5363{col 52}    4{col 58}{space 2} 0.049{col 70}{text}{c |}
+{col 3}{text}{c |}           D_unemp{col 23}          D.output{col 42}{c |}{result}{space 1} 4.0103{col 52}    4{col 58}{space 2} 0.405{col 70}{text}{c |}
+{col 3}{text}{c |}           D_unemp{col 23}           D.erate{col 42}{c |}{result}{space 1} 11.816{col 52}    4{col 58}{space 2} 0.019{col 70}{text}{c |}
+{col 3}{text}{c |}           D_unemp{col 23}           D.irate{col 42}{c |}{result}{space 1} 10.003{col 52}    4{col 58}{space 2} 0.040{col 70}{text}{c |}
+{col 3}{text}{c |}           D_unemp{col 23}               ALL{col 42}{c |}{result}{space 1} 36.322{col 52}   20{col 58}{space 2} 0.014{col 70}{text}{c |}
+{col 3}{text}{c LT}{hline 19}{hline 19}{c +}{hline 9}{hline 6}{hline 12}{c RT}
+{col 3}{text}{c |}           D_erate{col 23}             D.inf{col 42}{c |}{result}{space 1} 7.1021{col 52}    4{col 58}{space 2} 0.131{col 70}{text}{c |}
+{col 3}{text}{c |}           D_erate{col 23}              D.m2{col 42}{c |}{result}{space 1} 18.788{col 52}    4{col 58}{space 2} 0.001{col 70}{text}{c |}
+{col 3}{text}{c |}           D_erate{col 23}          D.output{col 42}{c |}{result}{space 1} 7.8463{col 52}    4{col 58}{space 2} 0.097{col 70}{text}{c |}
+{col 3}{text}{c |}           D_erate{col 23}           D.unemp{col 42}{c |}{result}{space 1}  .5067{col 52}    4{col 58}{space 2} 0.973{col 70}{text}{c |}
+{col 3}{text}{c |}           D_erate{col 23}           D.irate{col 42}{c |}{result}{space 1} 6.6144{col 52}    4{col 58}{space 2} 0.158{col 70}{text}{c |}
+{col 3}{text}{c |}           D_erate{col 23}               ALL{col 42}{c |}{result}{space 1} 35.535{col 52}   20{col 58}{space 2} 0.017{col 70}{text}{c |}
+{col 3}{text}{c LT}{hline 19}{hline 19}{c +}{hline 9}{hline 6}{hline 12}{c RT}
+{col 3}{text}{c |}           D_irate{col 23}             D.inf{col 42}{c |}{result}{space 1}  13.98{col 52}    4{col 58}{space 2} 0.007{col 70}{text}{c |}
+{col 3}{text}{c |}           D_irate{col 23}              D.m2{col 42}{c |}{result}{space 1} 24.225{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}           D_irate{col 23}          D.output{col 42}{c |}{result}{space 1} 12.485{col 52}    4{col 58}{space 2} 0.014{col 70}{text}{c |}
+{col 3}{text}{c |}           D_irate{col 23}           D.unemp{col 42}{c |}{result}{space 1} 26.651{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}           D_irate{col 23}           D.erate{col 42}{c |}{result}{space 1} 20.491{col 52}    4{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c |}           D_irate{col 23}               ALL{col 42}{c |}{result}{space 1} 88.166{col 52}   20{col 58}{space 2} 0.000{col 70}{text}{c |}
+{col 3}{text}{c BLC}{hline 19}{hline 19}{c BT}{hline 9}{hline 6}{hline 12}{c BRC}
+
+{com}.         log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/nithkosal/Dropbox/Research Projects/HouseholdIncome/empirical/Marcodata/Tables/table_3.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}16 Nov 2021, 09:19:22
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

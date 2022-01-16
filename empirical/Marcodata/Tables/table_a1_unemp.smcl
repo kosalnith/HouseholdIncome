@@ -1,0 +1,57 @@
+{smcl}
+{txt}{sf}{ul off}Table_A1 for unemp
+
+{col 19}Results from Impulse
+
+{c TLC}{hline 8}{c TT}{hline 11}{c TT}{hline 11}{c TT}{hline 11}{c TT}{hline 11}{c TRC}
+{c |}{col 10}{c |}{col 15}(1){col 22}{c |}{col 27}(2){col 34}{c |}{col 39}(3){col 46}{c |}{col 51}(4){col 58}{c |}
+{c |}{col 4}step{col 10}{c |}{col 13}sfevd{col 22}{c |}{col 25}sfevd{col 34}{c |}{col 37}sfevd{col 46}{c |}{col 49}sfevd{col 58}{c |}
+{c LT}{hline 8}{c +}{hline 11}{c +}{hline 11}{c +}{hline 11}{c +}{hline 11}{c RT}
+{c |}{col 2}0     {col 10}{c |}{res}{col 12}0       {txt}{col 22}{c |}{res}{col 24}0       {txt}{col 34}{c |}{res}{col 36}0       {txt}{col 46}{c |}{res}{col 48}0       {txt}{col 58}{c |}
+{c |}{col 2}1     {col 10}{c |}{res}{col 12}0       {txt}{col 22}{c |}{res}{col 24}0       {txt}{col 34}{c |}{res}{col 36}.000512 {txt}{col 46}{c |}{res}{col 48}.861691 {txt}{col 58}{c |}
+{c |}{col 2}2     {col 10}{c |}{res}{col 12}.015656 {txt}{col 22}{c |}{res}{col 24}.001605 {txt}{col 34}{c |}{res}{col 36}.003187 {txt}{col 46}{c |}{res}{col 48}.780354 {txt}{col 58}{c |}
+{c |}{col 2}3     {col 10}{c |}{res}{col 12}.016517 {txt}{col 22}{c |}{res}{col 24}.00155  {txt}{col 34}{c |}{res}{col 36}.005448 {txt}{col 46}{c |}{res}{col 48}.747297 {txt}{col 58}{c |}
+{c |}{col 2}4     {col 10}{c |}{res}{col 12}.016898 {txt}{col 22}{c |}{res}{col 24}.014361 {txt}{col 34}{c |}{res}{col 36}.007639 {txt}{col 46}{c |}{res}{col 48}.732373 {txt}{col 58}{c |}
+{c |}{col 2}5     {col 10}{c |}{res}{col 12}.014743 {txt}{col 22}{c |}{res}{col 24}.013972 {txt}{col 34}{c |}{res}{col 36}.005769 {txt}{col 46}{c |}{res}{col 48}.732843 {txt}{col 58}{c |}
+{c |}{col 2}6     {col 10}{c |}{res}{col 12}.02164  {txt}{col 22}{c |}{res}{col 24}.013805 {txt}{col 34}{c |}{res}{col 36}.010755 {txt}{col 46}{c |}{res}{col 48}.696992 {txt}{col 58}{c |}
+{c |}{col 2}7     {col 10}{c |}{res}{col 12}.021124 {txt}{col 22}{c |}{res}{col 24}.017824 {txt}{col 34}{c |}{res}{col 36}.009606 {txt}{col 46}{c |}{res}{col 48}.673759 {txt}{col 58}{c |}
+{c |}{col 2}8     {col 10}{c |}{res}{col 12}.021406 {txt}{col 22}{c |}{res}{col 24}.017505 {txt}{col 34}{c |}{res}{col 36}.010915 {txt}{col 46}{c |}{res}{col 48}.66337  {txt}{col 58}{c |}
+{c |}{col 2}9     {col 10}{c |}{res}{col 12}.021476 {txt}{col 22}{c |}{res}{col 24}.017104 {txt}{col 34}{c |}{res}{col 36}.010262 {txt}{col 46}{c |}{res}{col 48}.668815 {txt}{col 58}{c |}
+{c |}{col 2}10    {col 10}{c |}{res}{col 12}.02428  {txt}{col 22}{c |}{res}{col 24}.017158 {txt}{col 34}{c |}{res}{col 36}.010221 {txt}{col 46}{c |}{res}{col 48}.665998 {txt}{col 58}{c |}
+{c |}{col 2}11    {col 10}{c |}{res}{col 12}.024141 {txt}{col 22}{c |}{res}{col 24}.017386 {txt}{col 34}{c |}{res}{col 36}.009827 {txt}{col 46}{c |}{res}{col 48}.663626 {txt}{col 58}{c |}
+{c |}{col 2}12    {col 10}{c |}{res}{col 12}.024267 {txt}{col 22}{c |}{res}{col 24}.017604 {txt}{col 34}{c |}{res}{col 36}.009956 {txt}{col 46}{c |}{res}{col 48}.661423 {txt}{col 58}{c |}
+{c |}{col 2}13    {col 10}{c |}{res}{col 12}.024379 {txt}{col 22}{c |}{res}{col 24}.017641 {txt}{col 34}{c |}{res}{col 36}.009673 {txt}{col 46}{c |}{res}{col 48}.661564 {txt}{col 58}{c |}
+{c |}{col 2}14    {col 10}{c |}{res}{col 12}.025616 {txt}{col 22}{c |}{res}{col 24}.017584 {txt}{col 34}{c |}{res}{col 36}.010027 {txt}{col 46}{c |}{res}{col 48}.660856 {txt}{col 58}{c |}
+{c |}{col 2}15    {col 10}{c |}{res}{col 12}.025645 {txt}{col 22}{c |}{res}{col 24}.017804 {txt}{col 34}{c |}{res}{col 36}.009855 {txt}{col 46}{c |}{res}{col 48}.660329 {txt}{col 58}{c |}
+{c |}{col 2}16    {col 10}{c |}{res}{col 12}.025737 {txt}{col 22}{c |}{res}{col 24}.017748 {txt}{col 34}{c |}{res}{col 36}.010051 {txt}{col 46}{c |}{res}{col 48}.659398 {txt}{col 58}{c |}
+{c |}{col 2}17    {col 10}{c |}{res}{col 12}.025811 {txt}{col 22}{c |}{res}{col 24}.017696 {txt}{col 34}{c |}{res}{col 36}.00993  {txt}{col 46}{c |}{res}{col 48}.659546 {txt}{col 58}{c |}
+{c |}{col 2}18    {col 10}{c |}{res}{col 12}.026293 {txt}{col 22}{c |}{res}{col 24}.017674 {txt}{col 34}{c |}{res}{col 36}.009981 {txt}{col 46}{c |}{res}{col 48}.659499 {txt}{col 58}{c |}
+{c |}{col 2}19    {col 10}{c |}{res}{col 12}.026338 {txt}{col 22}{c |}{res}{col 24}.017675 {txt}{col 34}{c |}{res}{col 36}.009894 {txt}{col 46}{c |}{res}{col 48}.659268 {txt}{col 58}{c |}
+{c |}{col 2}20    {col 10}{c |}{res}{col 12}.026389 {txt}{col 22}{c |}{res}{col 24}.017703 {txt}{col 34}{c |}{res}{col 36}.009924 {txt}{col 46}{c |}{res}{col 48}.658863 {txt}{col 58}{c |}
+{c |}{col 2}21    {col 10}{c |}{res}{col 12}.026413 {txt}{col 22}{c |}{res}{col 24}.017701 {txt}{col 34}{c |}{res}{col 36}.009867 {txt}{col 46}{c |}{res}{col 48}.65876  {txt}{col 58}{c |}
+{c |}{col 2}22    {col 10}{c |}{res}{col 12}.026578 {txt}{col 22}{c |}{res}{col 24}.017701 {txt}{col 34}{c |}{res}{col 36}.009909 {txt}{col 46}{c |}{res}{col 48}.658731 {txt}{col 58}{c |}
+{c |}{col 2}23    {col 10}{c |}{res}{col 12}.026612 {txt}{col 22}{c |}{res}{col 24}.017724 {txt}{col 34}{c |}{res}{col 36}.009876 {txt}{col 46}{c |}{res}{col 48}.658671 {txt}{col 58}{c |}
+{c |}{col 2}24    {col 10}{c |}{res}{col 12}.02664  {txt}{col 22}{c |}{res}{col 24}.017713 {txt}{col 34}{c |}{res}{col 36}.009914 {txt}{col 46}{c |}{res}{col 48}.658521 {txt}{col 58}{c |}
+{c |}{col 2}25    {col 10}{c |}{res}{col 12}.026647 {txt}{col 22}{c |}{res}{col 24}.017703 {txt}{col 34}{c |}{res}{col 36}.009888 {txt}{col 46}{c |}{res}{col 48}.658501 {txt}{col 58}{c |}
+{c |}{col 2}26    {col 10}{c |}{res}{col 12}.0267   {txt}{col 22}{c |}{res}{col 24}.017697 {txt}{col 34}{c |}{res}{col 36}.009906 {txt}{col 46}{c |}{res}{col 48}.658504 {txt}{col 58}{c |}
+{c |}{col 2}27    {col 10}{c |}{res}{col 12}.026715 {txt}{col 22}{c |}{res}{col 24}.017693 {txt}{col 34}{c |}{res}{col 36}.009887 {txt}{col 46}{c |}{res}{col 48}.65848  {txt}{col 58}{c |}
+{c |}{col 2}28    {col 10}{c |}{res}{col 12}.026727 {txt}{col 22}{c |}{res}{col 24}.017695 {txt}{col 34}{c |}{res}{col 36}.009895 {txt}{col 46}{c |}{res}{col 48}.65842  {txt}{col 58}{c |}
+{c |}{col 2}29    {col 10}{c |}{res}{col 12}.026728 {txt}{col 22}{c |}{res}{col 24}.017694 {txt}{col 34}{c |}{res}{col 36}.009882 {txt}{col 46}{c |}{res}{col 48}.658398 {txt}{col 58}{c |}
+{c |}{col 2}30    {col 10}{c |}{res}{col 12}.026743 {txt}{col 22}{c |}{res}{col 24}.017694 {txt}{col 34}{c |}{res}{col 36}.00989  {txt}{col 46}{c |}{res}{col 48}.658393 {txt}{col 58}{c |}
+{c |}{col 2}31    {col 10}{c |}{res}{col 12}.026749 {txt}{col 22}{c |}{res}{col 24}.017695 {txt}{col 34}{c |}{res}{col 36}.009883 {txt}{col 46}{c |}{res}{col 48}.658388 {txt}{col 58}{c |}
+{c |}{col 2}32    {col 10}{c |}{res}{col 12}.026755 {txt}{col 22}{c |}{res}{col 24}.017693 {txt}{col 34}{c |}{res}{col 36}.00989  {txt}{col 46}{c |}{res}{col 48}.658372 {txt}{col 58}{c |}
+{c |}{col 2}33    {col 10}{c |}{res}{col 12}.026755 {txt}{col 22}{c |}{res}{col 24}.017691 {txt}{col 34}{c |}{res}{col 36}.009885 {txt}{col 46}{c |}{res}{col 48}.658365 {txt}{col 58}{c |}
+{c |}{col 2}34    {col 10}{c |}{res}{col 12}.026759 {txt}{col 22}{c |}{res}{col 24}.01769  {txt}{col 34}{c |}{res}{col 36}.009889 {txt}{col 46}{c |}{res}{col 48}.658363 {txt}{col 58}{c |}
+{c |}{col 2}35    {col 10}{c |}{res}{col 12}.026761 {txt}{col 22}{c |}{res}{col 24}.017689 {txt}{col 34}{c |}{res}{col 36}.009885 {txt}{col 46}{c |}{res}{col 48}.658361 {txt}{col 58}{c |}
+{c |}{col 2}36    {col 10}{c |}{res}{col 12}.026763 {txt}{col 22}{c |}{res}{col 24}.017689 {txt}{col 34}{c |}{res}{col 36}.009887 {txt}{col 46}{c |}{res}{col 48}.658355 {txt}{col 58}{c |}
+{c |}{col 2}37    {col 10}{c |}{res}{col 12}.026763 {txt}{col 22}{c |}{res}{col 24}.017688 {txt}{col 34}{c |}{res}{col 36}.009884 {txt}{col 46}{c |}{res}{col 48}.658351 {txt}{col 58}{c |}
+{c |}{col 2}38    {col 10}{c |}{res}{col 12}.026764 {txt}{col 22}{c |}{res}{col 24}.017688 {txt}{col 34}{c |}{res}{col 36}.009886 {txt}{col 46}{c |}{res}{col 48}.65835  {txt}{col 58}{c |}
+{c |}{col 2}39    {col 10}{c |}{res}{col 12}.026764 {txt}{col 22}{c |}{res}{col 24}.017688 {txt}{col 34}{c |}{res}{col 36}.009884 {txt}{col 46}{c |}{res}{col 48}.658349 {txt}{col 58}{c |}
+{c |}{col 2}40    {col 10}{c |}{res}{col 12}.026765 {txt}{col 22}{c |}{res}{col 24}.017688 {txt}{col 34}{c |}{res}{col 36}.009886 {txt}{col 46}{c |}{res}{col 48}.658348 {txt}{col 58}{c |}
+{c BLC}{hline 8}{c BT}{hline 11}{c BT}{hline 11}{c BT}{hline 11}{c BT}{hline 11}{c BRC}
+{p 0 4 4}(1) irfname = Impulse, impulse = D.unemp, and response = D.inf{p_end}
+{p 0 4 4}(2) irfname = Impulse, impulse = D.unemp, and response = D.output{p_end}
+{p 0 4 4}(3) irfname = Impulse, impulse = D.unemp, and response = D.erate{p_end}
+{p 0 4 4}(4) irfname = Impulse, impulse = D.unemp, and response = D.unemp{p_end}
+{smcl}
+{txt}{sf}{ul off}
